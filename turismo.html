@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turismo médico en Medellín — Dr. Diego Carrascal</title>
+<meta name="description" content="¿Vienes de otra ciudad o país? Planea tu tratamiento estético en Medellín, la ciudad de la eterna primavera: qué hacer, dónde hospedarte, itinerario sugerido y preguntas frecuentes.">
+<meta name="theme-color" content="#16130F">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="turismo">
+<script src="layout.js"></script>
+
+<main>
+
+<!-- PORTADA -->
+<section class="tour-hero">
+  <div class="tour-hero-bg"><img src="assets/img/turismo/medellin-atardecer.jpg" alt="Medellín al atardecer" class="parallax"></div>
+  <div class="wrap tour-hero-copy">
+    <p class="eyebrow light reveal"><span class="dot"></span> Turismo médico · Medellín</p>
+    <h1 class="h1 light" data-split>Cuídate en la ciudad de la <em>eterna primavera</em></h1>
+    <p class="lead light reveal">¿Vienes de otra ciudad o de otro país? Combina tu tratamiento con el Dr. Diego Carrascal y una ciudad que enamora: clima templado todo el año, montañas, cultura y la calidez paisa.</p>
+    <div class="hero-ctas reveal">
+      <a href="#planea" class="btn btn-gold magnetic">Planear mi viaje <span class="arr">→</span></a>
+      <a href="#que-hacer" class="btn btn-ghost light">Qué hacer en Medellín</a>
+    </div>
+  </div>
+</section>
+
+<!-- LO ESENCIAL -->
+<section class="facts wrap" aria-labelledby="factsTitle">
+  <p class="eyebrow">Lo esencial</p>
+  <h2 class="h2" id="factsTitle" data-split>Medellín en <em>datos rápidos</em></h2>
+  <div class="facts-grid">
+    <div class="fact reveal"><span class="fact-big">22°</span><h3>Clima templado</h3><p>Temperatura promedio cercana a 22 °C casi todo el año.</p></div>
+    <div class="fact reveal"><span class="fact-big">MDE</span><h3>Aeropuerto internacional</h3><p>José María Córdova, en Rionegro. Entre 45 y 60 min hasta El Poblado.</p></div>
+    <div class="fact reveal"><span class="fact-big">El Poblado</span><h3>Zona del consultorio</h3><p>Edificio Xerox, piso 8. Hoteles, restaurantes y cafés a pocos minutos.</p></div>
+    <div class="fact reveal"><span class="fact-big">Metro</span><h3>Fácil de recorrer</h3><p>Metro, Metrocable, taxis y apps de transporte para moverte con comodidad.</p></div>
+  </div>
+</section>
+
+<!-- PLANEA TU VIAJE -->
+<section class="plan" id="planea">
+  <div class="wrap">
+    <p class="eyebrow light">Planea tu viaje</p>
+    <h2 class="h2 light" data-split>De tu casa a tu <em>mejor versión</em> en 4 pasos</h2>
+    <ol class="plan-steps">
+      <li class="plan-step reveal">
+        <span class="plan-n">01</span>
+        <h3>Escríbenos</h3>
+        <p>Cuéntanos por WhatsApp qué tratamiento te interesa y en qué fechas piensas viajar.</p>
+      </li>
+      <li class="plan-step reveal">
+        <span class="plan-n">02</span>
+        <h3>Agenda tu valoración</h3>
+        <p>Coordinamos día y hora para que aproveches al máximo tu estadía.</p>
+      </li>
+      <li class="plan-step reveal">
+        <span class="plan-n">03</span>
+        <h3>Tu tratamiento</h3>
+        <p>Valoración médica especializada y procedimiento en el consultorio de El Poblado.</p>
+      </li>
+      <li class="plan-step reveal">
+        <span class="plan-n">04</span>
+        <h3>Recupérate y disfruta</h3>
+        <p>El doctor te indica qué actividades puedes hacer y cuándo. Medellín te espera.</p>
+      </li>
+    </ol>
+    <a class="btn btn-gold magnetic" href="https://wa.me/573243245856?text=Hola%20Dr.%20Diego%2C%20vengo%20de%20otra%20ciudad%20y%20quiero%20planear%20mi%20tratamiento%20en%20Medell%C3%ADn." target="_blank" rel="noopener">Empezar por WhatsApp →</a>
+  </div>
+</section>
+
+<!-- QUÉ HACER -->
+<section class="todo wrap" id="que-hacer" aria-labelledby="todoTitle">
+  <div class="todo-head">
+    <div>
+      <p class="eyebrow">Qué hacer en Medellín</p>
+      <h2 class="h2" id="todoTitle" data-split>Planes para <em>cada momento</em> de tu viaje</h2>
+    </div>
+    <p class="todo-note">Cada plan indica su nivel de esfuerzo: <b class="lvl lvl-1">Suave</b> <b class="lvl lvl-2">Moderado</b> <b class="lvl lvl-3">Activo</b>. Así eliges según tu recuperación.</p>
+  </div>
+  <div class="chips todo-filter" role="tablist" aria-label="Filtrar planes">
+    <button class="chip is-on" role="tab" aria-selected="true" data-cat="todos">Todos</button>
+    <button class="chip" role="tab" aria-selected="false" data-cat="suave">Planes suaves</button>
+    <button class="chip" role="tab" aria-selected="false" data-cat="cultura">Cultura</button>
+    <button class="chip" role="tab" aria-selected="false" data-cat="naturaleza">Naturaleza</button>
+    <button class="chip" role="tab" aria-selected="false" data-cat="escapada">Escapadas de un día</button>
+  </div>
+  <div class="todo-grid" id="todoGrid" aria-live="polite"></div>
+</section>
+
+<!-- ITINERARIO -->
+<section class="trip" aria-labelledby="tripTitle">
+  <div class="wrap trip-grid">
+    <div>
+      <p class="eyebrow">Itinerario sugerido</p>
+      <h2 class="h2" id="tripTitle" data-split>Cinco días, <em>a tu ritmo</em></h2>
+      <p class="lead">Un ejemplo de cómo combinar tu tratamiento con la ciudad. Tu plan real depende del procedimiento y de las indicaciones del doctor.</p>
+      <div class="days" role="tablist" aria-label="Días del itinerario" id="days"></div>
+    </div>
+    <article class="day-card" id="dayCard" aria-live="polite"></article>
+  </div>
+</section>
+
+<!-- TEMPORADAS -->
+<section class="seasons wrap" aria-labelledby="seasonsTitle">
+  <p class="eyebrow">Temporadas especiales</p>
+  <h2 class="h2" id="seasonsTitle" data-split>Si puedes elegir fecha, <em>elige bien</em></h2>
+  <div class="seasons-grid">
+    <figure class="season reveal">
+      <img src="assets/img/turismo/flores.jpg" alt="Flores en Medellín" loading="lazy">
+      <figcaption><span>Agosto</span><h3>Feria de las Flores</h3><p>La fiesta más grande de la ciudad: desfile de silleteros, música y flores por todas partes.</p></figcaption>
+    </figure>
+    <figure class="season reveal">
+      <img src="assets/img/turismo/medellin-noche.jpg" alt="Medellín iluminada de noche" loading="lazy">
+      <figcaption><span>Diciembre</span><h3>Alumbrados navideños</h3><p>Medellín se ilumina: recorridos nocturnos, ambiente familiar y temporada de celebración.</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CONSEJOS + FAQ -->
+<section class="tips wrap" aria-labelledby="tipsTitle">
+  <div class="tips-grid">
+    <div>
+      <p class="eyebrow">Consejos para tu visita</p>
+      <h2 class="h2" id="tipsTitle" data-split>Viaja <em>tranquilo</em></h2>
+      <ul class="tips-list">
+        <li class="reveal"><b>Hospédate en El Poblado.</b> Quedas cerca del consultorio y de la mejor oferta gastronómica.</li>
+        <li class="reveal"><b>Deja margen en tu agenda.</b> Algunos procedimientos requieren reposo; el doctor te dirá cuánto.</li>
+        <li class="reveal"><b>Empaca ligero.</b> Ropa fresca, una chaqueta para la noche, paraguas, gafas de sol y protector solar.</li>
+        <li class="reveal"><b>Trae tu historia clínica</b> si tienes alguna condición de salud o tomas medicamentos.</li>
+        <li class="reveal"><b>Muévete fácil.</b> Metro, Metrocable o apps de transporte para tus recorridos.</li>
+      </ul>
+    </div>
+    <div class="faq" id="faq">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <details class="reveal">
+        <summary>¿Cuántos días debo quedarme en Medellín?</summary>
+        <p>Depende del procedimiento. Los tratamientos no quirúrgicos suelen requerir estancias más cortas que procedimientos quirúrgicos como la alectomía. En la valoración el doctor te recomienda un tiempo para tu caso.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Puedo coordinar todo antes de viajar?</summary>
+        <p>Sí. Escríbenos por WhatsApp con el tratamiento que te interesa y tus fechas, y coordinamos tu valoración para que aproveches tu viaje.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Dónde me conviene hospedarme?</summary>
+        <p>En El Poblado, la zona del consultorio. Tiene amplia oferta de hoteles y apartamentos, restaurantes y cafés, y es una de las zonas preferidas por los viajeros.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Cómo llego desde el aeropuerto?</summary>
+        <p>El Aeropuerto Internacional José María Córdova está en Rionegro. Puedes tomar taxi, transporte por aplicación o bus hacia la ciudad; el trayecto toma entre 45 y 60 minutos aproximadamente.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Puedo hacer turismo después de mi procedimiento?</summary>
+        <p>En muchos casos sí, con algunas precauciones como el sol directo o el ejercicio intenso. El doctor te indicará qué planes son seguros para ti y desde cuándo.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Atienden fuera de Medellín?</summary>
+        <p>Sí. También atendemos en Apartadó, en la región de Urabá.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery" aria-label="Postales de Medellín y Antioquia">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <img src="assets/img/turismo/medellin-laderas.jpg" alt=""><img src="assets/img/turismo/piedra-penol.jpg" alt=""><img src="assets/img/turismo/botero-mural.jpg" alt=""><img src="assets/img/turismo/guatape-calles.jpg" alt=""><img src="assets/img/turismo/medellin-poblado.jpg" alt=""><img src="assets/img/turismo/santa-elena.jpg" alt=""><img src="assets/img/turismo/comuna-13.jpg" alt="">
+      <img src="assets/img/turismo/medellin-laderas.jpg" alt=""><img src="assets/img/turismo/piedra-penol.jpg" alt=""><img src="assets/img/turismo/botero-mural.jpg" alt=""><img src="assets/img/turismo/guatape-calles.jpg" alt=""><img src="assets/img/turismo/medellin-poblado.jpg" alt=""><img src="assets/img/turismo/santa-elena.jpg" alt=""><img src="assets/img/turismo/comuna-13.jpg" alt="">
+    </div>
+  </div>
+  <p class="fine wrap">Fotografías de Medellín y Antioquia: Unsplash.</p>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
