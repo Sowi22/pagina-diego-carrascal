@@ -151,7 +151,7 @@ const PAGES = {
   'index.html': { id: 'inicio', path: '/', label: 'Inicio', type: 'WebPage',
     title: 'Dr. Diego Carrascal | Medicina Estética en Medellín y Urabá',
     description: 'Medicina estética en Medellín con el Dr. Diego Carrascal: botox, rinomodelación sin cirugía, armonización facial, relleno de labios, Radiesse y Sculptra, láser CO₂, criolipólisis y más. Resultados naturales. Agenda tu valoración.',
-    faq: FAQ_HOME },
+  },
   'quienes-somos.html': { id: 'quienes-somos', path: '/quienes-somos', label: 'Quiénes somos', type: 'AboutPage',
     title: 'Quiénes somos | Dr. Diego Carrascal, médico estético en Medellín',
     description: 'Conoce al Dr. Diego Carrascal: médico de la Universidad del Sinú, Máster en Medicina Estética de la Universidad de Alcalá (Madrid), docente y con más de 5.000 pacientes atendidos en Medellín y Urabá.' },

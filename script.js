@@ -55,19 +55,20 @@ function chipGroup(chips, onPick) {
   }));
 }
 
-/* ---------- Portada: video vertical (data-video="/assets/video/archivo.mp4") ---------- */
+/* ---------- Portada: video opcional (data-video="/assets/video/archivo.mp4") ----------
+   Funciona con la portada horizontal (.hero-media-inner) y con la vertical (.hero-reel). */
 function initHeroVideo() {
-  const box = $('.hero-reel');
+  const box = $('.hero-reel[data-video], .hero-media-inner[data-video]');
   const src = box && box.dataset.video.trim();
-  if (!src) return; // sin archivo: la portada abre el reel de Instagram (initVideos)
+  if (!src) return;
+  const poster = $('.hero-bg, .hero-reel-poster', box);
   const v = document.createElement('video');
-  Object.assign(v, { muted: true, loop: true, autoplay: true, playsInline: true, preload: 'metadata',
-    poster: $('.hero-reel-poster', box).getAttribute('src') });
-  v.className = 'hero-reel-poster';
-  v.setAttribute('aria-label', box.dataset.label || 'Video');
+  Object.assign(v, { muted: true, loop: true, autoplay: true, playsInline: true, preload: 'metadata', poster: poster.getAttribute('src') });
+  v.className = poster.className;
+  v.setAttribute('aria-label', box.dataset.label || poster.alt || 'Video');
   v.src = src;
-  $('.hero-reel-poster', box).replaceWith(v);
-  $('.hero-reel-play', box).remove();
+  poster.replaceWith(v);
+  $('.hero-reel-play', box)?.remove();
   box.removeAttribute('data-reel');
   v.play().catch(() => {});
 }
