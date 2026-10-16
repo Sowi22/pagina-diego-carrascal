@@ -324,7 +324,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero-top">
     <p class="eyebrow reveal"><span class="dot"></span> Tu salud y belleza en las mejores manos</p>
     <h1 class="hero-title" data-split>
       Tu mejor versión,<br><em>sin dejar de ser tú.</em>
@@ -339,8 +339,10 @@
   </div>
 
   <div class="hero-media" id="heroMedia">
-    <div class="hero-media-inner">
-      <img src="/assets/img/srv-armonizacion.jpg" alt="Armonización facial en Medellín">
+    <!-- Para usar video: sube el archivo a /assets/video/ y escribe su ruta en data-video,
+         p. ej. data-video="/assets/video/portada.mp4". La imagen queda como portada mientras carga. -->
+    <div class="hero-media-inner" data-video="">
+      <img class="hero-bg" src="/assets/img/srv-armonizacion.jpg" alt="Armonización facial en Medellín">
       <div class="hero-media-caption">
         <p class="eyebrow light">Ciencia · Precisión médica · Sensibilidad estética</p>
         <p class="hero-media-quote">“La verdadera exclusividad no está en cambiar la apariencia, sino en potenciar la esencia natural.”</p>
@@ -364,8 +366,14 @@
 <!-- MANIFIESTO -->
 <section class="manifesto" id="manifesto">
   <div class="manifesto-sticky wrap">
-    <p class="eyebrow">Filosofía</p>
-    <p class="manifesto-text" id="manifestoText">Mi trabajo no consiste en transformar rostros, sino en revelar la mejor versión natural de cada paciente mediante ciencia, precisión médica y sensibilidad estética.</p>
+    <div>
+      <p class="eyebrow">Filosofía</p>
+      <p class="manifesto-text" id="manifestoText">Mi trabajo no consiste en transformar rostros, sino en revelar la mejor versión natural de cada paciente mediante ciencia, precisión médica y sensibilidad estética.</p>
+    </div>
+    <figure class="manifesto-media">
+      <img src="/assets/img/dr-diego-carrascal-retrato.jpg" alt="Dr. Diego Carrascal, médico estético en Medellín" loading="lazy">
+      <figcaption>Dr. Diego Carrascal</figcaption>
+    </figure>
   </div>
 </section>
 

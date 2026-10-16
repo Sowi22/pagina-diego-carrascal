@@ -22,6 +22,7 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+  initHeroVideo();
   initFinder();
   initTours();
   initDays();
@@ -50,6 +51,21 @@ function chipGroup(chips, onPick) {
     chips.forEach(c => { c.classList.toggle('is-on', c === chip); c.setAttribute('aria-selected', c === chip); });
     onPick(chip);
   }));
+}
+
+/* ---------- Portada: video opcional (data-video="/assets/video/archivo.mp4") ---------- */
+function initHeroVideo() {
+  const box = $('.hero-media-inner[data-video]');
+  const src = box && box.dataset.video.trim();
+  if (!src) return;
+  const img = $('.hero-bg', box);
+  const v = document.createElement('video');
+  Object.assign(v, { muted: true, loop: true, autoplay: true, playsInline: true, preload: 'metadata', poster: img.getAttribute('src') });
+  v.className = 'hero-bg';
+  v.setAttribute('aria-label', img.alt);
+  v.src = src;
+  img.replaceWith(v);
+  v.play().catch(() => {});
 }
 
 /* ---------- Buscador de tratamiento ---------- */
@@ -333,7 +349,7 @@ function initMotion(ready, mWords) {
       { clipPath: () => `inset(0px ${inset()}px 0px ${inset()}px round 28px)` },
       { clipPath: 'inset(0px 0px 0px 0px round 0px)', ease: 'none',
         scrollTrigger: { trigger: '#heroMedia', start: 'top 85%', end: 'top top', scrub: true, invalidateOnRefresh: true } });
-    gsap.to('.hero-media-inner > img', { scale: 1, ease: 'none',
+    gsap.to('.hero-bg', { scale: 1, ease: 'none',
       scrollTrigger: { trigger: '#heroMedia', start: 'top bottom', end: 'bottom top', scrub: true } });
     gsap.from('.hero-media-caption, .hero-badge', { y: 50, opacity: 0, stagger: 0.1, duration: 1,
       ease: 'expo.out', scrollTrigger: { trigger: '#heroMedia', start: 'top 30%' } });
