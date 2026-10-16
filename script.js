@@ -1,95 +1,27 @@
-/* Dr. Diego Carrascal — interacciones del sitio (todas las páginas) */
+/* Dr. Diego Carrascal — interacciones del sitio.
+   El contenido viene en el HTML (lo genera tools/build.mjs); aquí solo se anima y se filtra. */
 
 const WA = '573243245856';
 
-const SERVICES = [
-  { id: 'botox', name: 'Toxina botulínica (Botox)', img: 'srv-botox.jpg', points: [
-    'Suaviza arrugas y líneas de expresión en frente, entrecejo y contorno de ojos.',
-    'Resultados naturales y armónicos, sin perder la expresión facial.',
-    'Efecto rejuvenecedor, con un rostro más fresco y descansado.'] },
-  { id: 'rino', name: 'Rinomodelación sin cirugía', img: 'srv-rinomodelacion.jpg', points: [
-    'Mejora el perfil nasal sin cirugía ni anestesia general.',
-    'Corrige imperfecciones como la giba y define la punta nasal con ácido hialurónico.',
-    'Resultados inmediatos y naturales, con mayor armonía facial.'] },
-  { id: 'armonizacion', name: 'Armonización facial', img: 'srv-armonizacion.jpg', points: [
-    'Enfoque integral y personalizado, adaptado a la estructura de tu rostro.',
-    'Equilibrio y simetría facial, respetando tus rasgos naturales.',
-    'Combinación de técnicas avanzadas para resultados armónicos.'] },
-  { id: 'ojeras', name: 'Relleno de ojeras', img: 'srv-ojeras.jpg', points: [
-    'Corrige el hundimiento de las ojeras, devolviendo volumen al contorno de ojos.',
-    'Mejora la coloración oscura, aportando luminosidad a la mirada.',
-    'Aspecto más fresco y descansado, sin perder naturalidad.'] },
-  { id: 'alectomia', name: 'Alectomía', img: 'srv-alectomia.jpg', points: [
-    'Mejora la proporción entre la nariz y el resto del rostro.',
-    'Reduce el ancho de las alas nasales para un contorno más refinado.',
-    'Procedimiento quirúrgico con cambios permanentes y visibles.'] },
-  { id: 'crio', name: 'Criolipólisis', img: 'srv-criolipolisis.jpg', points: [
-    'Elimina grasa localizada mediante frío controlado, sin cirugía.',
-    'Define la silueta en abdomen, flancos, espalda y muslos.',
-    'Tratamiento no invasivo y seguro, con mínima molestia.'] },
-  { id: 'capilar', name: 'Terapias capilares', img: 'srv-capilar.jpg', points: [
-    'Frena la caída del cabello y fortalece desde la raíz.',
-    'Estimula el crecimiento capilar, mejorando densidad y vitalidad.',
-    'Mejora la salud del cuero cabelludo con terapias especializadas.'] },
-  { id: 'laser', name: 'Láser CO₂', img: 'srv-laser.jpg', points: [
-    'Renueva la piel en profundidad y mejora su luminosidad.',
-    'Estimula la producción natural de colágeno para una piel más firme.',
-    'Mejora manchas, cicatrices y líneas finas.'] },
-];
-
+// Buscador "¿Qué te gustaría mejorar?" → ids de las tarjetas #srv-<id>
 const NEEDS = {
   arrugas: ['botox', 'armonizacion'],
+  flacidez: ['bio', 'armonizacion'],
   nariz: ['rino', 'alectomia'],
   ojeras: ['ojeras'],
   armonia: ['armonizacion', 'botox'],
-  piel: ['laser'],
+  piel: ['laser', 'bio'],
   grasa: ['crio'],
   cabello: ['capilar'],
 };
 
-// Turismo: lvl 1 = suave, 2 = moderado, 3 = activo
-const TOURS = [
-  { name: 'Comuna 13 · Graffitour', img: 'comuna-13.jpg', cats: ['cultura'], lvl: 2, time: '≈ 30 min desde El Poblado',
-    text: 'Arte urbano, escaleras eléctricas al aire libre, música y la historia de transformación de uno de los barrios más emblemáticos de la ciudad.' },
-  { name: 'Metrocable y Parque Arví', img: 'metrocable.jpg', cats: ['naturaleza'], lvl: 2, time: '≈ 1 h en Metro y Metrocable',
-    text: 'Sube en teleférico sobre las montañas del valle y llega a un parque natural con senderos, bosque y mercados campesinos.' },
-  { name: 'Plaza Botero', img: 'plaza-botero.jpg', cats: ['cultura', 'suave'], lvl: 1, time: '≈ 25 min en Metro',
-    text: 'Esculturas monumentales de Fernando Botero al aire libre, frente al Palacio de la Cultura y junto al Museo de Antioquia.' },
-  { name: 'Jardín Botánico', img: 'flores.jpg', cats: ['naturaleza', 'suave'], lvl: 1, time: '≈ 30 min desde El Poblado',
-    text: 'Orquideorama, lagos y senderos tranquilos. Al lado, Parque Explora con su acuario y museo interactivo.' },
-  { name: 'El Poblado y Provenza', img: 'poblado-verde.jpg', cats: ['suave', 'cultura'], lvl: 1, time: 'A minutos del consultorio',
-    text: 'Cafés de especialidad, restaurantes y diseño local en las calles arboladas alrededor del consultorio.' },
-  { name: 'Miradores de noche', img: 'medellin-noche.jpg', cats: ['suave'], lvl: 1, time: '≈ 20 min por Las Palmas',
-    text: 'Medellín iluminada desde las montañas. Un plan tranquilo para ver el atardecer y la ciudad encendida.' },
-  { name: 'Guatapé', img: 'guatape-calles.jpg', cats: ['escapada', 'suave'], lvl: 1, time: '≈ 2 h por carretera',
-    text: 'Pueblo de zócalos coloridos a orillas del embalse más famoso de Antioquia. Paseos en lancha y gastronomía local.' },
-  { name: 'Piedra del Peñol', img: 'piedra-penol.jpg', cats: ['escapada', 'naturaleza'], lvl: 3, time: '≈ 2 h por carretera',
-    text: 'Más de 700 escalones hasta la cima para una de las vistas más impresionantes de Colombia. Mejor cuando ya estés recuperado.' },
-  { name: 'Santa Elena', img: 'santa-elena.jpg', cats: ['escapada', 'naturaleza', 'suave'], lvl: 1, time: '≈ 45 min desde El Poblado',
-    text: 'Tierra de silleteros: fincas de flores, tradición paisa y aire de montaña para un día tranquilo.' },
-  { name: 'Ruta del café', img: 'cafe.jpg', cats: ['escapada', 'suave'], lvl: 1, time: 'Día completo',
-    text: 'Visita una finca cafetera de Antioquia y descubre el recorrido del grano a la taza, con paisaje de montaña.' },
-];
-const LVL = ['', 'Suave', 'Moderado', 'Activo'];
-
-const DAYS = [
-  { t: 'Llegada', img: 'medellin-poblado.jpg', items: ['Aterriza en el aeropuerto José María Córdova.', 'Instálate en El Poblado, cerca del consultorio.', 'Cena tranquila en Provenza.'] },
-  { t: 'Valoración y tratamiento', img: 'poblado-verde.jpg', items: ['Valoración médica especializada con el doctor.', 'Tu procedimiento, si es el indicado para ti.', 'Tarde de descanso en tu hotel.'] },
-  { t: 'Un plan suave', img: 'plaza-botero.jpg', items: ['Jardín Botánico o Plaza Botero a tu ritmo.', 'Café de especialidad en El Poblado.', 'Siempre según las indicaciones del doctor.'] },
-  { t: 'Control y ciudad', img: 'metrocable.jpg', items: ['Control con el doctor, si aplica a tu tratamiento.', 'Comuna 13 o Metrocable si ya te sientes bien.', 'Atardecer en un mirador.'] },
-  { t: 'Escapada', img: 'guatape-embalse.jpg', items: ['Día en Guatapé y su embalse.', 'Últimas compras y recomendaciones de cuidado.', 'Regreso a casa con tu mejor versión.'] },
-];
-
-const byId = Object.fromEntries(SERVICES.map(s => [s.id, s]));
 const waLink = text => `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
-// El pie se inserta en DOMContentLoaded (layout.js); se inicia después.
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-  renderServices();
   initFinder();
   initTours();
   initDays();
@@ -107,48 +39,10 @@ function init() {
     document.documentElement.classList.add('no-pin');
     mWords.forEach(w => (w.style.opacity = 1));
     $$('.step').forEach(s => s.classList.add('is-on'));
-    $$('[data-count]').forEach(el => (el.textContent = Number(el.dataset.count).toLocaleString('es-CO')));
     placePill();
   } else {
     initMotion(ready, mWords);
   }
-}
-
-/* ---------- Tratamientos ---------- */
-function renderServices() {
-  const track = $('#servicesTrack');
-  if (!track) return;
-  track.innerHTML = SERVICES.map((s, i) => `
-  <article class="svc" id="srv-${s.id}">
-    <div class="svc-img"><img src="assets/img/${s.img}" alt="${s.name}" loading="lazy"></div>
-    <div class="svc-body">
-      <span class="svc-n">${String(i + 1).padStart(2, '0')} / ${String(SERVICES.length).padStart(2, '0')}</span>
-      <h3>${s.name}</h3>
-      <ul>${s.points.map(p => `<li>${p}</li>`).join('')}</ul>
-      <div class="svc-actions">
-        <a href="agenda.html?proc=${s.id}">Agendar</a>
-        <a href="${waLink(`Hola Dr. Diego, quiero más información sobre ${s.name}.`)}" target="_blank" rel="noopener">Más información →</a>
-      </div>
-    </div>
-  </article>`).join('');
-}
-
-/* ---------- Buscador ---------- */
-function initFinder() {
-  const out = $('#finderResult');
-  if (!out) return;
-  const show = key => {
-    out.innerHTML = NEEDS[key].map(id => {
-      const s = byId[id];
-      return `<div class="fr-card">
-        <img src="assets/img/${s.img}" alt="">
-        <div><h3>${s.name}</h3><p>${s.points[0]}</p>
-        <a href="agenda.html?proc=${s.id}">Quiero una valoración →</a></div>
-      </div>`;
-    }).join('');
-  };
-  chipGroup($$('#finder .chip'), c => show(c.dataset.need));
-  show('arrugas');
 }
 
 function chipGroup(chips, onPick) {
@@ -158,42 +52,53 @@ function chipGroup(chips, onPick) {
   }));
 }
 
-/* ---------- Turismo: planes ---------- */
+/* ---------- Buscador de tratamiento ---------- */
+function initFinder() {
+  const out = $('#finderResult');
+  if (!out) return;
+  const show = key => {
+    out.innerHTML = NEEDS[key].map(id => {
+      const card = $(`#srv-${id}`);
+      if (!card) return '';
+      const name = $('h3', card).textContent;
+      const page = $('h3 a', card).getAttribute('href');
+      return `<div class="fr-card">
+        <img src="${$('img', card).getAttribute('src')}" alt="">
+        <div><h3>${name}</h3><p>${$('li', card).textContent}</p>
+        <a href="${page}">Ver procedimiento →</a></div>
+      </div>`;
+    }).join('');
+  };
+  chipGroup($$('#finder .chip'), c => show(c.dataset.need));
+  show('arrugas');
+}
+
+/* ---------- Turismo: filtro de planes ---------- */
 function initTours() {
   const grid = $('#todoGrid');
   if (!grid) return;
-  const show = cat => {
-    const list = TOURS.filter(t => cat === 'todos' || t.cats.includes(cat));
-    grid.innerHTML = list.map((t, i) => `
-      <article class="tour" style="animation-delay:${i * 0.05}s">
-        <div class="tour-img"><img src="assets/img/turismo/${t.img}" alt="${t.name}" loading="lazy"><b class="lvl lvl-${t.lvl}">${LVL[t.lvl]}</b></div>
-        <div class="tour-body"><h3>${t.name}</h3><p>${t.text}</p><span class="tour-time">${t.time}</span></div>
-      </article>`).join('');
+  const cards = $$('.tour', grid);
+  chipGroup($$('.todo-filter .chip'), c => {
+    const cat = c.dataset.cat;
+    let k = 0;
+    cards.forEach(t => {
+      const on = cat === 'todos' || t.dataset.cats.split(' ').includes(cat);
+      t.hidden = !on;
+      if (on) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = ''; t.style.animationDelay = (k++ * 0.05) + 's'; }
+    });
     window.ScrollTrigger && ScrollTrigger.refresh();
-  };
-  chipGroup($$('.todo-filter .chip'), c => show(c.dataset.cat));
-  show('todos');
+  });
 }
 
 /* ---------- Turismo: itinerario ---------- */
 function initDays() {
-  const tabs = $('#days'), card = $('#dayCard');
-  if (!tabs) return;
-  tabs.innerHTML = DAYS.map((d, i) =>
-    `<button class="day${i ? '' : ' is-on'}" role="tab" aria-selected="${!i}"><span>Día ${i + 1}</span>${d.t}</button>`).join('');
-  const show = i => {
-    const d = DAYS[i];
-    card.innerHTML = `<img src="assets/img/turismo/${d.img}" alt="">
-      <div class="day-body"><span class="day-k">Día ${i + 1}</span><h3>${d.t}</h3>
-      <ul>${d.items.map(x => `<li>${x}</li>`).join('')}</ul></div>`;
-    card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
-  };
-  const btns = $$('.day', tabs);
+  const btns = $$('.day');
+  if (!btns.length) return;
+  const cards = $$('.day-card');
   btns.forEach((b, i) => b.addEventListener('click', () => {
     btns.forEach(x => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b); });
-    show(i);
+    cards.forEach((c, k) => c.classList.toggle('is-on', k === i));
   }));
-  show(0);
 }
 
 /* ---------- Comparador antes / después ---------- */
@@ -206,6 +111,7 @@ function initCompare() {
 /* ---------- Menú móvil ---------- */
 function initMenu() {
   const burger = $('#burger');
+  if (!burger) return;
   const toggle = open => { document.body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open); };
   burger.addEventListener('click', () => toggle(!document.body.classList.contains('menu-open')));
   $$('#menu a').forEach(a => a.addEventListener('click', () => toggle(false)));
@@ -220,9 +126,8 @@ function initWizard() {
   const state = { proc: null, sede: null };
   let idx = 0;
 
-  $('#pickProc').innerHTML = [...SERVICES.map(s => [s.id, s.name]), ['valoracion', 'Aún no sé, quiero una valoración']]
-    .map(([id, name]) => `<button type="button" class="pick-opt" data-v="${id}">${name}</button>`).join('');
-  const procName = id => id === 'valoracion' ? 'valoración general' : byId[id].name;
+  const procBtn = id => $(`#pickProc [data-v="${id}"]`);
+  const procName = id => id === 'valoracion' ? 'valoración general' : procBtn(id).textContent.trim();
 
   const go = i => {
     idx = i;
@@ -232,7 +137,7 @@ function initWizard() {
       `${wizard.elements.nombre.value.trim()}, se abrirá WhatsApp con tu solicitud de ${procName(state.proc)} lista para enviar.`;
   };
   const selectProc = id => {
-    if (id !== 'valoracion' && !byId[id]) return;
+    if (!procBtn(id)) return;
     state.proc = id;
     $$('#pickProc .pick-opt').forEach(b => b.classList.toggle('is-on', b.dataset.v === id));
     $('[data-step="1"] .w-next', wizard).disabled = false;
@@ -244,7 +149,7 @@ function initWizard() {
     $$('#pickSede .pick-opt').forEach(x => x.classList.toggle('is-on', x === b));
   });
 
-  // Viene desde un tratamiento: agenda.html?proc=rino
+  // Viene desde un procedimiento: /contacto?proc=rino
   const pre = new URLSearchParams(location.search).get('proc');
   if (pre) selectProc(pre);
 
@@ -288,18 +193,18 @@ function initSpotlight() {
 
 /* ---------- Loader (solo primera visita) y cortina entre pestañas ---------- */
 function initLoader() {
-  const loader = $('#loader');
-  const loaded = new Promise(r => document.readyState === 'complete' ? r() : addEventListener('load', r));
-  if (!loader) {
+  const html = document.documentElement;
+  if (!html.classList.contains('first-visit')) {
     // rAF no corre en pestañas ocultas: el temporizador garantiza que la cortina siempre se abra
-    const open = () => document.documentElement.classList.add('curtain-out');
+    const open = () => html.classList.add('curtain-out');
     requestAnimationFrame(() => requestAnimationFrame(open));
     setTimeout(open, 60);
     return new Promise(r => setTimeout(r, 350));
   }
+  const loaded = new Promise(r => document.readyState === 'complete' ? r() : addEventListener('load', r));
   const minShow = new Promise(r => setTimeout(r, 1700));
   return Promise.race([Promise.all([minShow, loaded]), new Promise(r => setTimeout(r, 4000))])
-    .then(() => loader.classList.add('done'));
+    .then(() => $('#loader').classList.add('done'));
 }
 
 function initTransitions() {
@@ -307,9 +212,9 @@ function initTransitions() {
   addEventListener('pageshow', e => { if (e.persisted) document.documentElement.classList.remove('leaving'); });
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
-    if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.defaultPrevented) return;
     const url = new URL(a.href, location.href);
-    if (url.origin !== location.origin || !/\.html$|\/$/.test(url.pathname)) return;
+    if (url.origin !== location.origin || /\.[a-z0-9]+$/i.test(url.pathname) && !/\.html$/.test(url.pathname)) return;
     if (url.pathname === location.pathname) return; // mismo documento: lo maneja el scroll suave
     e.preventDefault();
     document.documentElement.classList.add('leaving');
@@ -330,8 +235,8 @@ function splitManifesto() {
 
 /* ---------- Pestaña activa (indicador deslizante) ---------- */
 function placePill(target) {
-  const nav = $('.nav-links'), pill = $('.nav-pill');
-  if (!nav || !pill) return;
+  const pill = $('.nav-pill');
+  if (!pill) return;
   const a = target || $('.nav-links a.is-active');
   if (!a) { pill.style.opacity = 0; return; }
   pill.style.opacity = 1;
@@ -383,7 +288,7 @@ function initMotion(ready, mWords) {
       const target = $(url.hash);
       if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -90 }); }
     });
-    // Llegó con ancla desde otra pestaña (p. ej. procedimientos.html#resultados)
+    // Llegó con ancla desde otra pestaña (p. ej. /procedimientos#resultados)
     if (location.hash && $(location.hash)) ready.then(() => setTimeout(() => lenis.scrollTo($(location.hash), { offset: -90 }), 200));
   }
 
@@ -434,9 +339,10 @@ function initMotion(ready, mWords) {
       ease: 'expo.out', scrollTrigger: { trigger: '#heroMedia', start: 'top 30%' } });
   }
 
-  // Contadores
+  // Contadores (el número real está en el HTML para buscadores; aquí se anima desde 0)
   $$('[data-count]').forEach(el => {
     const obj = { v: 0 };
+    el.textContent = '0';
     gsap.to(obj, {
       v: +el.dataset.count, duration: 2.2, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 90%' },
