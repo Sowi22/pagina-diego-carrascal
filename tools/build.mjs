@@ -300,7 +300,6 @@ const footer = () => `
   <div class="wrap">
     <p class="footer-cta" data-split>¿Listo para realzar tu <em>mejor versión?</em></p>
     <a href="/contacto" class="btn btn-gold btn-lg magnetic">Agenda tu cita hoy</a>
-    <img src="/assets/img/marca/logo-horizontal-claro.png" alt="Dr. Diego Carrascal, Medicina Estética" class="footer-sign" width="900" height="201" loading="lazy">
     <p class="footer-slogan">${SLOGAN}</p>
     <div class="footer-cols">
       <div><span>Procedimientos en Medellín</span>${SERVICES.map(s => `<a href="${procHref(s.id)}">${PROCS[s.id].h1}</a>`).join('')}</div>

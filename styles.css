@@ -414,7 +414,7 @@ em .w, em .w > span { background: inherit; -webkit-background-clip: text; backgr
 .footer { background: var(--ink); color: var(--cloud); padding: 40px 0 30px; text-align: center; }
 .footer-cta { margin: 0 auto 36px; max-width: 16ch; font: 400 clamp(44px, 7vw, 110px)/.98 var(--serif); letter-spacing: -.03em; }
 .footer-sign { width: min(560px, 86%); height: auto; margin: clamp(80px, 10vw, 140px) auto 18px; }
-.footer-slogan { margin: 0 0 60px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.footer-slogan { margin: clamp(70px, 9vw, 120px) 0 36px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
 .footer address { font-style: normal; display: grid; gap: 8px; align-content: start; }
 .footer-cols p { margin: 0; color: rgba(255,255,255,.6); font-size: 14px; }
 .footer-cols { display: grid; grid-template-columns: 1.3fr repeat(4, 1fr); gap: 30px; padding: 40px 0; border-top: 1px solid var(--line-light); text-align: left; }
