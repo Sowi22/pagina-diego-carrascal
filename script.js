@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
   initHeroVideo();
+  initVideos();
   initFinder();
   initTours();
   initDays();
@@ -66,6 +67,21 @@ function initHeroVideo() {
   v.src = src;
   img.replaceWith(v);
   v.play().catch(() => {});
+}
+
+/* ---------- Videos de Instagram en ventana emergente (se cargan solo al hacer clic) ---------- */
+function initVideos() {
+  const modal = $('#vmodal');
+  if (!modal) return;
+  const frame = $('.vmodal-frame', modal);
+  const close = () => { modal.close(); frame.innerHTML = ''; };
+  $$('[data-reel]').forEach(card => card.addEventListener('click', () => {
+    frame.innerHTML = `<iframe src="https://www.instagram.com/reel/${card.dataset.reel}/embed/" title="${card.getAttribute('aria-label')}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+    modal.showModal();
+  }));
+  $('.vmodal-close', modal).addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  modal.addEventListener('cancel', () => (frame.innerHTML = ''));
 }
 
 /* ---------- Buscador de tratamiento ---------- */

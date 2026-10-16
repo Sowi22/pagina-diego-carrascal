@@ -24,7 +24,7 @@ export const PROCS = {
     procType: 'NoninvasiveProcedure', body: 'Nariz',
     title: 'Rinomodelación sin cirugía en Medellín | Dr. Diego Carrascal',
     description: 'Rinomodelación en Medellín con ácido hialurónico: corrige la giba y define la punta nasal sin cirugía, sin anestesia general y sin incapacidad. Dr. Diego Carrascal, El Poblado.',
-    intro: 'Mejora el perfil de tu nariz sin cirugía, sin anestesia general y sin incapacidad. Un resultado inmediato y natural, en El Poblado, Medellín.',
+    intro: 'El procedimiento por el que más reconocen al Dr. Diego Carrascal. Mejora el perfil de tu nariz sin cirugía, sin anestesia general y sin incapacidad, con un resultado inmediato y natural en El Poblado, Medellín.',
     what: 'La rinomodelación es un procedimiento sin cirugía que mejora el perfil de la nariz con ácido hialurónico. Al ubicar el producto en puntos estratégicos se disimula la giba, se levanta y define la punta nasal y se logra mayor armonía con el resto del rostro. No reduce el tamaño de la nariz: equilibra sus proporciones.',
     forWho: ['Giba o “caballete” en el dorso nasal.', 'Punta nasal caída o poco definida.', 'Pequeñas asimetrías del perfil.', 'Quienes quieren mejorar su nariz sin pasar por un quirófano.'],
     faq: [
