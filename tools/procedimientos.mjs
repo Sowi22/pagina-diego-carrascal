@@ -24,7 +24,7 @@ export const PROCS = {
     procType: 'NoninvasiveProcedure', body: 'Nariz',
     title: 'Rinomodelación sin cirugía en Medellín | Dr. Diego Carrascal',
     description: 'Rinomodelación en Medellín con ácido hialurónico: corrige la giba y define la punta nasal sin cirugía, sin anestesia general y sin incapacidad. Dr. Diego Carrascal, El Poblado.',
-    intro: 'El procedimiento por el que más reconocen al Dr. Diego Carrascal. Mejora el perfil de tu nariz sin cirugía, sin anestesia general y sin incapacidad, con un resultado inmediato y natural en El Poblado, Medellín.',
+    intro: 'Mejora el perfil de tu nariz sin cirugía, sin anestesia general y sin incapacidad. Un resultado inmediato y natural, en El Poblado, Medellín.',
     what: 'La rinomodelación es un procedimiento sin cirugía que mejora el perfil de la nariz con ácido hialurónico. Al ubicar el producto en puntos estratégicos se disimula la giba, se levanta y define la punta nasal y se logra mayor armonía con el resto del rostro. No reduce el tamaño de la nariz: equilibra sus proporciones.',
     forWho: ['Giba o “caballete” en el dorso nasal.', 'Punta nasal caída o poco definida.', 'Pequeñas asimetrías del perfil.', 'Quienes quieren mejorar su nariz sin pasar por un quirófano.'],
     faq: [
@@ -51,6 +51,22 @@ export const PROCS = {
       ['¿Cuánto cuesta la armonización facial en Medellín?', 'Como cada plan es personalizado, el valor se define en la valoración médica. Escríbenos por WhatsApp para agendarla.'],
     ],
     related: ['bio', 'rino', 'botox'],
+  },
+  labios: {
+    slug: 'relleno-de-labios-medellin', h1: 'Relleno de labios en Medellín', alt: ['Aumento de labios', 'Labios con ácido hialurónico', 'Belotero'], kind: 'Sin cirugía',
+    procType: 'NoninvasiveProcedure', body: 'Labios',
+    title: 'Relleno de labios en Medellín | Labios naturales — Dr. Diego Carrascal',
+    description: 'Relleno de labios en Medellín con el Dr. Diego Carrascal: volumen, definición e hidratación con un diseño personalizado y resultados naturales, sin exageraciones. El Poblado.',
+    intro: 'Volumen, definición e hidratación en un solo tratamiento. Labios armónicos y elegantes, diseñados para tu rostro y sin exageraciones.',
+    what: 'El relleno de labios aporta volumen, estructura e hidratación con productos de alta calidad, como Belotero Intense. Cada diseño es personalizado: respeta tus facciones y resalta lo mejor de ti, para lograr labios más sensuales, armónicos y elegantes, sin perder naturalidad.',
+    forWho: ['Labios delgados o con poco volumen.', 'Falta de definición del contorno.', 'Labios deshidratados o asimétricos.', 'Quienes buscan un resultado natural, no exagerado.'],
+    faq: [
+      ['¿El relleno de labios se ve natural?', 'Ese es el objetivo: un diseño personalizado que respeta tus facciones, sin exageraciones.'],
+      ['¿Qué producto se utiliza?', 'Productos de alta calidad, como Belotero Intense. En la valoración el doctor te indica el más adecuado para ti.'],
+      ['¿Cuándo se ve el resultado?', 'El cambio se aprecia desde el primer momento, con un resultado que se asienta en los días siguientes.'],
+      ['¿Cuánto cuesta el relleno de labios en Medellín?', 'El valor se define en la valoración médica. Escríbenos por WhatsApp para agendarla.'],
+    ],
+    related: ['armonizacion', 'botox', 'rino'],
   },
   bio: {
     slug: 'bioestimulacion-radiesse-sculptra-medellin', h1: 'Bioestimulación con Radiesse y Sculptra en Medellín', alt: ['Bioestimuladores de colágeno', 'Radiesse', 'Sculptra'], kind: 'Sin cirugía',

@@ -25,18 +25,22 @@ const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&
 /* ---------------- Contenido ---------------- */
 
 export const SERVICES = [
-  { id: 'rino', name: 'Rinomodelación sin cirugía', img: 'srv-rinomodelacion.jpg', points: [
-    'Mejora el perfil nasal sin cirugía ni anestesia general.',
-    'Corrige imperfecciones como la giba y define la punta nasal con ácido hialurónico.',
-    'Resultados inmediatos y naturales, con mayor armonía facial.'] },
   { id: 'botox', name: 'Toxina botulínica (Botox)', img: 'srv-botox.jpg', points: [
     'Suaviza arrugas y líneas de expresión en frente, entrecejo y contorno de ojos.',
     'Resultados naturales y armónicos, sin perder la expresión facial.',
     'Efecto rejuvenecedor, con un rostro más fresco y descansado.'] },
+  { id: 'rino', name: 'Rinomodelación sin cirugía', img: 'srv-rinomodelacion.jpg', points: [
+    'Mejora el perfil nasal sin cirugía ni anestesia general.',
+    'Corrige imperfecciones como la giba y define la punta nasal con ácido hialurónico.',
+    'Resultados inmediatos y naturales, con mayor armonía facial.'] },
   { id: 'armonizacion', name: 'Armonización facial', img: 'srv-armonizacion.jpg', points: [
     'Enfoque integral y personalizado, adaptado a la estructura de tu rostro.',
     'Equilibrio y simetría facial, respetando tus rasgos naturales.',
     'Combinación de técnicas avanzadas para resultados armónicos.'] },
+  { id: 'labios', name: 'Relleno de labios', img: 'resultado-3.jpg', points: [
+    'Volumen, definición e hidratación en un solo tratamiento.',
+    'Diseño personalizado que respeta tus facciones.',
+    'Labios armónicos y elegantes, sin exageraciones.'] },
   { id: 'bio', name: 'Bioestimulación (Radiesse y Sculptra)', img: 'instagram/ig-06.jpg', points: [
     'Bioestimuladores que activan la producción natural de colágeno.',
     'Mejoran la firmeza y la calidad de la piel de forma progresiva.',
@@ -102,7 +106,7 @@ const FAQ_PROC = [
   ['¿Dónde atiende el Dr. Diego Carrascal?',
    'En Medellín, en el Edificio Xerox, Cra. 43A #15 Sur 15, piso 8, El Poblado, y en Apartadó, en la región de Urabá. La atención es todos los días de 7:00 a. m. a 7:00 p. m.'],
   ['¿Qué tratamientos realiza?',
-   'Toxina botulínica (botox), rinomodelación sin cirugía, armonización facial, bioestimulación con Radiesse y Sculptra, relleno de ojeras, alectomía, criolipólisis, terapias capilares y láser CO₂.'],
+   'Toxina botulínica (botox), rinomodelación sin cirugía, armonización facial, relleno de labios, bioestimulación con Radiesse y Sculptra, relleno de ojeras, alectomía, criolipólisis, terapias capilares y láser CO₂.'],
   ['¿La rinomodelación requiere cirugía?',
    'No. La rinomodelación se realiza con ácido hialurónico, sin cirugía ni anestesia general. Permite corregir imperfecciones como la giba y definir la punta nasal, con resultados inmediatos y naturales.'],
   ['¿Qué diferencia hay entre rinomodelación y alectomía?',
@@ -114,14 +118,14 @@ const FAQ_PROC = [
 ];
 
 const FAQ_HOME = [
-  ['¿La rinomodelación se ve natural?',
-   'Ese es el enfoque del Dr. Diego Carrascal: equilibrar el perfil respetando tus rasgos, para que el cambio se perciba armónico y no exagerado.'],
-  ['¿Necesito incapacidad después de la rinomodelación?',
-   'No. La rinomodelación no es quirúrgica ni requiere anestesia general; normalmente puedes retomar tus actividades siguiendo las indicaciones del doctor.'],
-  ['¿La rinomodelación reduce el tamaño de la nariz?',
-   'No. Con ácido hialurónico se equilibran las proporciones: se disimula la giba y se define la punta. Si la base de la nariz es ancha, el doctor puede combinarla con una alectomía.'],
-  ['¿Cuánto cuesta la rinomodelación en Medellín?',
-   'El valor se define en la valoración médica, según lo que necesites corregir. Escríbenos por WhatsApp para agendarla.'],
+  ['¿Qué tratamientos realiza el Dr. Diego Carrascal?',
+   'Botox, rinomodelación sin cirugía, armonización facial, relleno de labios, bioestimulación con Radiesse y Sculptra, relleno de ojeras, alectomía, criolipólisis, terapias capilares y láser CO₂.'],
+  ['¿Los resultados se ven naturales?',
+   'Ese es el enfoque del doctor: resultados elegantes y armónicos que respetan tus rasgos. Cambios que se perciben, no se imponen.'],
+  ['¿Cómo sé qué tratamiento necesito?',
+   'Cada tratamiento inicia con una valoración médica especializada. El doctor analiza tu rostro y te indica únicamente lo que realmente necesitas.'],
+  ['¿Cuánto cuestan los tratamientos?',
+   'El valor depende del procedimiento y de tu caso, y se define en la valoración médica. Escríbenos por WhatsApp para agendarla.'],
   ['¿Dónde atiende el Dr. Diego Carrascal?',
    'En el Edificio Xerox, Cra. 43A #15 Sur 15, piso 8, El Poblado, Medellín, y en Apartadó (Urabá). Todos los días de 7:00 a. m. a 7:00 p. m.'],
 ];
@@ -145,8 +149,8 @@ const FAQ_TOUR = [
 
 const PAGES = {
   'index.html': { id: 'inicio', path: '/', label: 'Inicio', type: 'WebPage',
-    title: 'Rinomodelación en Medellín | Dr. Diego Carrascal, Medicina Estética',
-    description: 'Dr. Diego Carrascal, referente en rinomodelación sin cirugía en Medellín: nariz armónica con ácido hialurónico, sin anestesia general ni incapacidad. También botox, armonización facial y más. Agenda tu valoración.',
+    title: 'Dr. Diego Carrascal | Medicina Estética en Medellín y Urabá',
+    description: 'Medicina estética en Medellín con el Dr. Diego Carrascal: botox, rinomodelación sin cirugía, armonización facial, relleno de labios, Radiesse y Sculptra, láser CO₂, criolipólisis y más. Resultados naturales. Agenda tu valoración.',
     faq: FAQ_HOME },
   'quienes-somos.html': { id: 'quienes-somos', path: '/quienes-somos', label: 'Quiénes somos', type: 'AboutPage',
     title: 'Quiénes somos | Dr. Diego Carrascal, médico estético en Medellín',
@@ -180,7 +184,7 @@ function schemaGraph(file, page) {
     slogan: SLOGAN, url: SITE + '/',
     logo: `${SITE}/assets/img/marca/icono-dorado.png`,
     image: [`${SITE}/assets/img/og-dr-diego-carrascal.jpg`, `${SITE}/assets/img/dr-diego-carrascal-retrato.jpg`],
-    description: 'Consultorio de medicina estética avanzada del Dr. Diego Carrascal en Medellín, reconocido por la rinomodelación sin cirugía, con enfoque en armonización facial y resultados sofisticados y naturales.',
+    description: 'Consultorio de medicina estética avanzada del Dr. Diego Carrascal en Medellín, con enfoque en armonización facial y resultados sofisticados y naturales.',
     telephone: PHONE, email: EMAIL,
     address: { '@type': 'PostalAddress', streetAddress: 'Cra. 43A #15 Sur 15, Edificio Xerox, piso 8',
       addressLocality: 'Medellín', addressRegion: 'Antioquia', postalCode: '050022', addressCountry: 'CO' },
@@ -197,7 +201,7 @@ function schemaGraph(file, page) {
   };
   const doctor = {
     '@type': 'Person', '@id': DOCTOR_ID, name: 'Diego Carrascal', honorificPrefix: 'Dr.',
-    jobTitle: 'Médico estético', description: 'Médico especializado en medicina estética avanzada, reconocido por su trabajo en rinomodelación sin cirugía en Medellín, con enfoque en armonización facial y resultados naturales. Docente en medicina estética.',
+    jobTitle: 'Médico estético', description: 'Médico especializado en medicina estética avanzada en Medellín, con enfoque en armonización facial y resultados naturales. Docente en medicina estética.',
     image: `${SITE}/assets/img/dr-diego-carrascal-retrato.jpg`, url: `${SITE}/quienes-somos`,
     worksFor: { '@id': CLINIC_ID },
     alumniOf: [
@@ -210,7 +214,7 @@ function schemaGraph(file, page) {
       { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: 'Máster en Medicina Estética', recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Universidad de Alcalá' } },
       { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certificate', name: 'Diplomado en Medicina Estética', recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Fundación Universitaria de Ciencias de la Salud (FUCS)' } },
     ],
-    knowsAbout: ['Rinomodelación', 'Rinomodelación sin cirugía', 'Medicina estética', 'Armonización facial', 'Toxina botulínica', 'Bioestimulación con Radiesse', 'Bioestimulación con Sculptra', 'Láser CO2', 'Criolipólisis', 'Relleno de ojeras', 'Alectomía', 'Terapias capilares'],
+    knowsAbout: ['Medicina estética', 'Armonización facial', 'Rinomodelación', 'Relleno de labios', 'Toxina botulínica', 'Bioestimulación con Radiesse', 'Bioestimulación con Sculptra', 'Láser CO2', 'Criolipólisis', 'Relleno de ojeras', 'Alectomía', 'Terapias capilares'],
     sameAs: [IG],
   };
   const website = { '@type': 'WebSite', '@id': `${SITE}/#website`, url: SITE + '/', name: 'Dr. Diego Carrascal · Medicina Estética',
@@ -386,6 +390,8 @@ const procPick = () => [...SERVICES.map(s => [s.id, s.name]), ['valoracion', 'A�
 const PARTS = {
   head, header, footer, scripts,
   services: () => services(), tours: () => tours(), days: () => days(), daycards: () => dayCards(),
+  'home-procs': () => SERVICES.map(s => `
+    <a href="${procHref(s.id)}" class="pcard reveal"><img src="/assets/img/${s.img}" alt="${esc(PROCS[s.id].h1)}" loading="lazy"><div><span>${PROCS[s.id].kind}</span><h3>${s.name.split(' (')[0]}</h3></div></a>`).join(''),
   'faq-proc': () => faq(FAQ_PROC), 'faq-home': () => faq(FAQ_HOME), 'faq-tour': () => faq(FAQ_TOUR), procpick: () => procPick(),
 };
 
@@ -537,7 +543,7 @@ console.log('✓ sitemap.xml');
 
 writeFileSync(join(ROOT, 'llms.txt'), `# Dr. Diego Carrascal · Medicina Estética
 
-> Consultorio de medicina estética del Dr. Diego Carrascal en El Poblado, Medellín (Colombia), con sede también en Apartadó (Urabá). Es reconocido especialmente por la rinomodelación sin cirugía; su enfoque es la armonización facial con resultados naturales. Lema: "${SLOGAN}".
+> Consultorio de medicina estética del Dr. Diego Carrascal en El Poblado, Medellín (Colombia), con sede también en Apartadó (Urabá). Enfoque en armonización facial y resultados naturales. Lema: "${SLOGAN}".
 
 ## Datos clave
 - Médico: Dr. Diego Carrascal. Médico de la Universidad del Sinú; Máster en Medicina Estética, Universidad de Alcalá (Madrid, España); Diplomado en Medicina Estética, FUCS (Bogotá). Docente de técnicas de medicina estética.

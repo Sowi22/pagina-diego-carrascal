@@ -798,6 +798,39 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
   .tour-band { min-height: 300px; }
 }
 
+/* Portada en dos columnas con video vertical completo (9:16, sin recortes) */
+.hero-split { padding-top: clamp(96px, 13vh, 130px); }
+.hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
+.hero-copy .hero-title { margin: 18px 0 22px; font-size: clamp(40px, 5vw, 78px); }
+.hero-copy .hero-lead { margin-bottom: 28px; max-width: 50ch; }
+.hero-doc { display: inline-flex; align-items: center; gap: 12px; margin-top: 30px; padding: 8px 18px 8px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font-size: 12.5px; color: var(--muted); transition: border-color .3s; }
+.hero-doc:hover { border-color: var(--ink); }
+.hero-doc img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
+.hero-doc strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
+.hero-reel {
+  position: relative; justify-self: center; width: min(100%, calc(min(78vh, 720px) * 9 / 16)); aspect-ratio: 9 / 16;
+  border-radius: 32px; overflow: hidden; background: var(--ink); cursor: pointer;
+  box-shadow: 0 40px 80px -40px rgba(11, 13, 24, .55), 0 0 0 1px rgba(207, 176, 108, .35);
+}
+.hero-reel-poster { width: 100%; height: 100%; object-fit: contain; background: var(--ink); }
+.hero-reel-play {
+  position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 84px; height: 84px; margin: -42px 0 0 -42px;
+  border: 0; border-radius: 50%; background: var(--gold-grad); color: var(--ink); font-size: 24px; padding-left: 5px;
+  box-shadow: 0 0 0 10px rgba(207, 176, 108, .25); transition: transform .4s var(--ease);
+}
+.hero-reel:hover .hero-reel-play { transform: scale(1.08); }
+.hero-reel-tag { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(11,13,24,.65); color: #fff; font-size: 12px; text-align: center; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.pgrid-10 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-reel { width: min(100%, 360px); }
+  .pgrid-10 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .pgrid-10 { grid-template-columns: 1fr 1fr; }
+  .hero-doc { margin-top: 22px; }
+}
+
 /* Sin animaciones (sin GSAP o movimiento reducido): carrusel nativo */
 .no-pin .services-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .no-pin .svc { scroll-snap-align: start; }

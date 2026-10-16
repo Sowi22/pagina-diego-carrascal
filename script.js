@@ -8,6 +8,7 @@ const NEEDS = {
   arrugas: ['botox', 'armonizacion'],
   flacidez: ['bio', 'armonizacion'],
   nariz: ['rino', 'alectomia'],
+  labios: ['labios'],
   ojeras: ['ojeras'],
   armonia: ['armonizacion', 'botox'],
   piel: ['laser', 'bio'],
@@ -54,18 +55,20 @@ function chipGroup(chips, onPick) {
   }));
 }
 
-/* ---------- Portada: video opcional (data-video="/assets/video/archivo.mp4") ---------- */
+/* ---------- Portada: video vertical (data-video="/assets/video/archivo.mp4") ---------- */
 function initHeroVideo() {
-  const box = $('.hero-media-inner[data-video]');
+  const box = $('.hero-reel');
   const src = box && box.dataset.video.trim();
-  if (!src) return;
-  const img = $('.hero-bg', box);
+  if (!src) return; // sin archivo: la portada abre el reel de Instagram (initVideos)
   const v = document.createElement('video');
-  Object.assign(v, { muted: true, loop: true, autoplay: true, playsInline: true, preload: 'metadata', poster: img.getAttribute('src') });
-  v.className = 'hero-bg';
-  v.setAttribute('aria-label', img.alt);
+  Object.assign(v, { muted: true, loop: true, autoplay: true, playsInline: true, preload: 'metadata',
+    poster: $('.hero-reel-poster', box).getAttribute('src') });
+  v.className = 'hero-reel-poster';
+  v.setAttribute('aria-label', box.dataset.label || 'Video');
   v.src = src;
-  img.replaceWith(v);
+  $('.hero-reel-poster', box).replaceWith(v);
+  $('.hero-reel-play', box).remove();
+  box.removeAttribute('data-reel');
   v.play().catch(() => {});
 }
 
@@ -76,7 +79,7 @@ function initVideos() {
   const frame = $('.vmodal-frame', modal);
   const close = () => { modal.close(); frame.innerHTML = ''; };
   $$('[data-reel]').forEach(card => card.addEventListener('click', () => {
-    frame.innerHTML = `<iframe src="https://www.instagram.com/reel/${card.dataset.reel}/embed/" title="${card.getAttribute('aria-label')}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+    frame.innerHTML = `<iframe src="https://www.instagram.com/reel/${card.dataset.reel}/embed/" title="${card.getAttribute('aria-label') || card.dataset.label || 'Video'}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
     modal.showModal();
   }));
   $('.vmodal-close', modal).addEventListener('click', close);
