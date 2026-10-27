@@ -39,7 +39,7 @@
 
 /* Secciones oscuras: redefinen los colores para su contenido */
 :where(.services, .booking, .footer, .videos, .plan, .menu, .tour-hero, .proc-doctor-card, .proc-card-dark,
-       .tile-dark, .cta-band, .ticker, .loader, .curtain, .mbar, .sede-visual) {
+       .tile-dark, .cta-band, .ticker, .loader, .curtain, .mbar, .sede-visual, .hero-stage) {
   --fg: #F3F1EC;
   --on-fg: #0B0D18;
   --text: #D5D7DE;
@@ -51,7 +51,7 @@
   color: var(--text);
 }
 :where(.services, .booking, .footer, .videos, .plan, .menu, .tour-hero, .proc-doctor-card, .proc-card-dark,
-       .tile-dark, .cta-band, .ticker) em { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; }
+       .tile-dark, .cta-band, .ticker, .hero-stage) em { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; color-scheme: light; scroll-padding-top: 100px; -webkit-tap-highlight-color: rgba(207, 176, 108, .25); }
@@ -1128,4 +1128,38 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
   .hero-doctor .hero-media-caption { top: auto; bottom: 22px; left: 18px; right: 18px; transform: none; max-width: none; }
   .hero-doctor .hero-media-quote { font-size: 22px; }
   .hero-media-link { margin-top: 12px; }
+}
+
+
+/* Portada: la foto del doctor es lo primero que se ve; el texto va sobre la zona oscura */
+.hero-first { padding-top: clamp(86px, 11vh, 104px); }
+.hero-stage {
+  position: relative; display: flex; align-items: center; isolation: isolate; overflow: hidden;
+  min-height: min(calc(100vh - 110px), 820px); margin: 0 clamp(8px, 1vw, 16px);
+  border-radius: var(--r-lg); background: var(--ink);
+}
+.hero-stage .hero-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; transform: none; }
+.hero-stage::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(11, 13, 24, .85) 0%, rgba(11, 13, 24, .45) 42%, transparent 62%); }
+.hero-stage-copy { width: min(760px, 58%); padding: clamp(32px, 5vw, 88px); }
+.hero-stage .eyebrow { margin-bottom: 20px; }
+.hero-stage .hero-title { margin: 0 0 20px; font-size: clamp(42px, 4.9vw, 80px); line-height: .98; color: var(--fg); }
+.hero-stage .hero-lead { margin: 0 0 28px; max-width: 40ch; font-size: clamp(17.5px, 1.4vw, 20px); color: var(--text); }
+.hero-stage .hero-ctas { gap: 12px; margin-bottom: 24px; flex-wrap: nowrap; }
+.hero-stage .hero-ctas .btn { min-height: 56px; padding: 0 28px; }
+.hero-stage .hero-proof { justify-content: flex-start; flex-wrap: wrap; color: var(--muted); }
+.hero-stage .hero-proof b { color: var(--fg); }
+@media (max-width: 1000px) {
+  .hero-stage-copy { width: 76%; }
+  .hero-stage .hero-ctas { flex-wrap: wrap; }
+}
+@media (max-width: 640px) {
+  .hero-first { padding-top: 86px; }
+  .hero-stage { flex-direction: column; align-items: stretch; min-height: 0; margin: 0 8px; }
+  .hero-stage .hero-bg { position: relative; z-index: 0; height: 58vh; min-height: 360px; object-position: 80% 18%; }
+  .hero-stage::after { inset: auto 0 0 0; height: calc(100% - 58vh + 120px); background: linear-gradient(180deg, transparent, var(--ink) 120px); }
+  .hero-stage-copy { position: relative; z-index: 1; width: auto; margin-top: -80px; padding: 0 20px 28px; }
+  .hero-stage .eyebrow { font-size: 11px; letter-spacing: .14em; }
+  .hero-stage .hero-title { font-size: clamp(36px, 10vw, 46px); }
+  .hero-stage .hero-ctas { flex-direction: column; }
+  .hero-stage .hero-ctas .btn { width: 100%; min-height: 52px; }
 }
