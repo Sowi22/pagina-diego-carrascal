@@ -293,12 +293,12 @@ const head = (file, p) => {
   return `
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.description)}">
 <link rel="canonical" href="${url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#0B0D18">
+<meta name="theme-color" content="#F5F5F7">
 <meta name="author" content="Dr. Diego Carrascal">
 <meta name="geo.region" content="CO-ANT">
 <meta name="geo.placename" content="Medellín">
@@ -348,7 +348,7 @@ const header = (file, p) => `
 
 <header class="nav" id="nav">
   <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio" translate="no">
-    <img src="/assets/img/marca/logo-horizontal-claro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager">
+    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager">
   </a>
   <nav class="nav-links" aria-label="Principal">
     ${tabs(p.id)}
