@@ -1040,3 +1040,25 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
   .stats { padding-top: 28px; row-gap: 18px; }
   .hero-proof { font-size: 14.5px; }
 }
+
+/* Bloque SEO desplegable del Inicio */
+.seo-more { padding-top: clamp(24px, 3vw, 40px); padding-bottom: clamp(32px, 4vw, 56px); }
+.seo-more details { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.seo-more summary {
+  position: relative; padding: 20px 48px 20px 0; cursor: pointer; list-style: none;
+  font: 400 clamp(20px, 2vw, 26px)/1.25 var(--serif); color: var(--fg);
+}
+.seo-more summary::-webkit-details-marker { display: none; }
+.seo-more summary::after {
+  content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--line); font: 300 20px var(--sans); transition: transform .4s var(--ease);
+}
+.seo-more details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.seo-body { padding: 0 0 26px; color: var(--muted); font-size: 16.5px; line-height: 1.7; max-width: 80ch; }
+.seo-body p { margin: 0 0 14px; }
+.seo-body h2 { margin: 24px 0 10px; font: 400 22px/1.2 var(--serif); color: var(--fg); }
+.seo-body ul { margin: 0 0 14px; padding-left: 20px; }
+.seo-body li { margin-bottom: 6px; }
+.seo-body a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
+.seo-body strong { color: var(--fg); font-weight: 600; }
