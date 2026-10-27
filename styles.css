@@ -1113,3 +1113,19 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
   .hero-top .hero-ctas { width: 100%; flex-direction: column; }
   .hero-proof { flex-wrap: wrap; font-size: 14px; gap: 8px 16px; }
 }
+
+/* Portada con el retrato del doctor */
+.hero-doctor .hero-bg { object-position: 72% 30%; }
+.hero-doctor .hero-media-caption .eyebrow { display: block; }
+.hero-doctor::after { background: linear-gradient(90deg, rgba(11, 13, 24, .55), transparent 55%); }
+.hero-doctor .hero-media-caption { left: clamp(24px, 5vw, 80px); right: auto; bottom: auto; top: 50%; transform: translateY(-50%); max-width: min(520px, 46%); }
+.hero-doctor .hero-media-quote { font-style: normal; font-size: clamp(28px, 3.2vw, 46px); line-height: 1.12; }
+.hero-media-link { display: inline-block; margin-top: 22px; padding-bottom: 4px; border-bottom: 1px solid var(--gold); color: var(--gold); font-weight: 500; letter-spacing: .02em; }
+.hero-media-link:hover { color: #F3E6A2; }
+@media (max-width: 640px) {
+  .hero-doctor .hero-bg { object-position: 80% 20%; }
+  .hero-doctor::after { background: linear-gradient(180deg, transparent 40%, rgba(11, 13, 24, .9)); }
+  .hero-doctor .hero-media-caption { top: auto; bottom: 22px; left: 18px; right: 18px; transform: none; max-width: none; }
+  .hero-doctor .hero-media-quote { font-size: 22px; }
+  .hero-media-link { margin-top: 12px; }
+}
