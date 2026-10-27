@@ -1090,3 +1090,26 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
 .seo-body li { margin-bottom: 6px; }
 .seo-body a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
 .seo-body strong { color: var(--fg); font-weight: 600; }
+
+/* Portada del Inicio: composición centrada y ordenada (sin huecos) */
+.hero { padding-top: clamp(120px, 16vh, 168px); }
+.hero-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0; }
+.hero-top .eyebrow { margin: 0 0 22px; justify-content: center; }
+.hero-top .hero-title { margin: 0 0 22px; font-size: clamp(44px, 6.2vw, 96px); line-height: .98; }
+.hero-top .hero-row { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.hero-top .hero-lead { margin: 0; max-width: 46ch; font-size: clamp(18px, 1.5vw, 21px); }
+.hero-top .hero-ctas { justify-content: center; gap: 12px; }
+.hero-top .hero-ctas .btn { min-height: 56px; padding: 0 30px; }
+.hero-proof { justify-content: center; flex-wrap: nowrap; gap: 10px 26px; }
+.hero-proof li { white-space: nowrap; }
+.hero-media { padding-top: clamp(32px, 4.5vh, 52px); }
+@media (max-width: 640px) {
+  .hero { padding-top: 104px; }
+  .hero-top .eyebrow { font-size: 11px; letter-spacing: .14em; gap: 8px; margin-bottom: 16px; }
+  .hero-top .hero-title { margin-bottom: 16px; }
+  .hero-top .hero-row { gap: 18px; }
+  .hero-top .hero-ctas .btn { min-height: 52px; }
+  .hero-top .hero-title { font-size: clamp(38px, 10.5vw, 48px); }
+  .hero-top .hero-ctas { width: 100%; flex-direction: column; }
+  .hero-proof { flex-wrap: wrap; font-size: 14px; gap: 8px 16px; }
+}
