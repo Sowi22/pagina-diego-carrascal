@@ -1256,3 +1256,48 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
 @media (max-width: 700px) {
   .arch-name { left: 50%; transform: translateX(-50%); text-align: center; }
 }
+
+
+/* ============================================================
+   Portada minimalista de lujo (pantalla dividida, marfil cálido)
+   ============================================================ */
+.hero-lux { padding: 0; background: #F7F3EE; }
+.lux-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: max(640px, min(100vh, 980px)); }
+.lux-copy {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(120px, 15vh, 160px) clamp(28px, 6vw, 110px) clamp(48px, 7vh, 80px);
+}
+.lux-kicker {
+  display: flex; align-items: center; gap: 14px; margin: 0 0 26px;
+  font-size: 12.5px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase; color: var(--gold-deep);
+}
+.lux-kicker::before { content: ""; width: 40px; height: 1px; background: var(--gold-grad); }
+.hero-lux .hero-title { margin: 0 0 26px; font-size: clamp(46px, 5vw, 84px); line-height: 1.02; letter-spacing: -.025em; color: var(--fg); }
+.hero-lux .hero-title em { display: block; }
+.hero-lux .hero-lead { margin: 0 0 36px; max-width: 38ch; font-size: clamp(17.5px, 1.35vw, 20px); line-height: 1.6; color: var(--muted); }
+.lux-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 26px; margin-bottom: 44px; }
+.lux-actions .btn { min-height: 58px; padding: 0 34px; }
+.lux-link { font-size: 15.5px; color: var(--fg); border-bottom: 1px solid rgba(11, 13, 24, .25); padding-bottom: 3px; }
+.lux-link:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+.lux-sign { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+.lux-sign img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; box-shadow: 0 0 0 1px rgba(207, 176, 108, .6), 0 0 0 4px #F7F3EE, 0 0 0 5px rgba(207, 176, 108, .35); }
+.lux-sign strong { display: block; font-size: 15.5px; font-weight: 600; color: var(--fg); }
+.lux-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0; padding: 22px 0 0; border-top: 1px solid rgba(155, 127, 78, .25); font-size: 13.5px; letter-spacing: 0; color: var(--muted); }
+.lux-trust li { white-space: nowrap; }
+.lux-trust li { display: flex; align-items: center; gap: 10px; }
+.lux-trust li::before { content: ""; width: 5px; height: 5px; transform: rotate(45deg); background: var(--gold-grad); }
+.lux-media { position: relative; margin: 0; overflow: hidden; background: #ECEBEA; }
+.lux-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.lux-media::after { content: ""; position: absolute; inset: clamp(18px, 2.4vw, 34px); border: 1px solid rgba(255, 255, 255, .7); pointer-events: none; }
+@media (max-width: 900px) {
+  .lux-grid { grid-template-columns: 1fr; min-height: 0; }
+  .lux-media { order: -1; height: 64vh; min-height: 380px; }
+  .lux-media img { object-position: 45% 22%; }
+  .lux-copy { padding: 34px 22px 40px; }
+  .lux-kicker { font-size: 11px; letter-spacing: .26em; margin-bottom: 18px; }
+  .hero-lux .hero-title { font-size: clamp(38px, 10.5vw, 52px); margin-bottom: 18px; }
+  .hero-lux .hero-lead { margin-bottom: 26px; }
+  .lux-actions { flex-direction: column; align-items: stretch; margin-bottom: 30px; }
+  .lux-actions .btn { width: 100%; }
+  .lux-link { align-self: center; }
+}
