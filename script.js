@@ -522,6 +522,16 @@ function initMotion(ready, mWords) {
     });
   }
 
+  // Portada en arco: tarjetas a distinta profundidad, monograma que gira y retrato que se acerca
+  if ($('.hero-arch')) {
+    const st = () => ({ trigger: '.hero-arch', start: 'top top', end: 'bottom top', scrub: true });
+    $$('.hero-arch [data-depth]').forEach(el => gsap.to(el, { y: () => +el.dataset.depth * 6, ease: 'none', scrollTrigger: st() }));
+    gsap.to('.arch-mono', { rotate: 28, scale: 1.12, ease: 'none', scrollTrigger: st() });
+    gsap.fromTo('.arch-photo', { scale: 1.12 }, { scale: 1, ease: 'none', scrollTrigger: st() });
+    gsap.set('.arch-frame, .float-card', { opacity: 0, scale: .94 });
+    ready.then(() => gsap.to('.arch-frame, .float-card', { scale: 1, opacity: 1, duration: 1.2, ease: 'expo.out', stagger: 0.09 }));
+  }
+
   // Videos: la fila se recorre en horizontal mientras se baja (escritorio)
   const mmv = gsap.matchMedia();
   mmv.add('(min-width: 1001px)', () => {
