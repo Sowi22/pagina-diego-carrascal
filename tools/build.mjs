@@ -3,7 +3,7 @@
 // itinerario, preguntas frecuentes y sitemap.xml.
 // Uso:  node tools/build.mjs   (reemplaza lo que esté entre <!-- @x --> y <!-- @/x -->)
 
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { PROCS } from './procedimientos.mjs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -242,12 +242,13 @@ const head = (file, p) => {
   const url = SITE + href(p);
   return `
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.description)}">
 <link rel="canonical" href="${url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="${p.theme || '#FFFFFF'}">
+<meta name="theme-color" content="${p.theme || '#F5F5F7'}">
 <meta name="author" content="Dr. Diego Carrascal">
 <meta name="geo.region" content="CO-ANT">
 <meta name="geo.placename" content="Medellín">
@@ -272,6 +273,8 @@ const head = (file, p) => {
 <link rel="apple-touch-icon" href="/assets/img/marca/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <script>try{var v=sessionStorage.getItem('dc-visited');sessionStorage.setItem('dc-visited','1');document.documentElement.className+=v?' return-visit':' first-visit'}catch(e){}</script>
@@ -285,16 +288,17 @@ const tabs = cur => NAV.map(p =>
   `<a href="${href(p)}"${p.id === cur ? ' class="is-active" aria-current="page"' : ''}>${p.label}</a>`).join('');
 
 const header = (file, p) => `
+<a class="skip" href="#main">Saltar al contenido</a>
 <div class="loader" id="loader" aria-hidden="true">
-  <img src="/assets/img/marca/logo-vertical-claro.png" alt="" class="loader-sign" width="700" height="765">
+  <img src="/assets/img/marca/logo-vertical-claro.png" alt="" class="loader-sign" width="700" height="765" loading="eager">
   <div class="loader-bar"><span></span></div>
 </div>
-<div class="curtain" id="curtain" aria-hidden="true"><img src="/assets/img/marca/icono-dorado.png" alt="" width="600" height="397"></div>
+<div class="curtain" id="curtain" aria-hidden="true"><img src="/assets/img/marca/icono-dorado.png" alt="" width="600" height="397" loading="eager"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
-  <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio">
-    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201">
+  <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio" translate="no">
+    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager">
   </a>
   <nav class="nav-links" aria-label="Principal">
     ${tabs(p.id)}
@@ -304,7 +308,7 @@ const header = (file, p) => `
   <button class="nav-burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 
-<div class="menu" id="menu">
+<div class="menu" id="menu" inert aria-hidden="true">
   <nav aria-label="Menú móvil">${tabs(p.id)}</nav>
   <div class="menu-foot">
     <a href="/contacto" class="btn btn-gold">Agendar cita</a>
@@ -322,11 +326,11 @@ const footer = () => `
     <div class="footer-cols">
       <div><span>Procedimientos en Medellín</span>${SERVICES.map(s => `<a href="${procHref(s.id)}">${PROCS[s.id].h1}</a>`).join('')}</div>
       <div><span>Explora</span>${NAV.map(p => `<a href="${href(p)}">${p.label}</a>`).join('')}</div>
-      <div><span>Escríbenos</span><a href="https://wa.me/${WA}" target="_blank" rel="noopener">${PHONE}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Todos los días, 7:00 a. m. – 7:00 p. m.</p></div>
+      <div><span>Escríbenos</span><a href="https://wa.me/${WA}" target="_blank" rel="noopener" translate="no">${PHONE}</a><a href="mailto:${EMAIL}">${EMAIL}</a><p>Todos los días, 7:00 a. m. – 7:00 p. m.</p></div>
       <address><span>Visítanos</span><a href="${MAPS}" target="_blank" rel="noopener">Edificio Xerox, Cra. 43A #15 Sur 15, piso 8, El Poblado, Medellín, Antioquia</a><p>Sede Apartadó, Urabá</p></address>
       <div><span>Síguenos</span><a href="${IG}" target="_blank" rel="noopener">Instagram</a><a href="${FB}" target="_blank" rel="noopener">Facebook</a></div>
     </div>
-    <div class="footer-legal"><span>© 2026 Dr. Diego Carrascal · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
+    <div class="footer-legal"><span>© 2026 <span translate="no">Dr. Diego Carrascal</span> · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
   </div>
 </footer>
 
@@ -365,12 +369,12 @@ const tours = () => TOURS.map(t => `
 </article>`).join('');
 
 const days = () => `
-<div class="days" role="tablist" aria-label="Días del itinerario">
-${DAYS.map((d, i) => `  <button class="day${i ? '' : ' is-on'}" role="tab" aria-selected="${!i}" aria-controls="day-${i + 1}"><span>Día ${i + 1}</span>${d.t}</button>`).join('\n')}
+<div class="days" role="group" aria-label="Días del itinerario">
+${DAYS.map((d, i) => `  <button type="button" class="day${i ? '' : ' is-on'}" aria-pressed="${!i}" aria-controls="day-${i + 1}" data-day="${i + 1}"><span>Día ${i + 1}</span>${d.t}</button>`).join('\n')}
 </div>`;
 
 const dayCards = () => DAYS.map((d, i) => `
-<article class="day-card${i ? '' : ' is-on'}" id="day-${i + 1}" role="tabpanel">
+<article class="day-card${i ? '' : ' is-on'}" id="day-${i + 1}" aria-label="Día ${i + 1}: ${d.t}"${i ? ' hidden' : ''}>
   <img src="/assets/img/turismo/${d.img}" alt="" loading="lazy">
   <div class="day-body"><span class="day-k">Día ${i + 1}</span><h3>${d.t}</h3>
   <ul>${d.items.map(x => `<li>${x}</li>`).join('')}</ul></div>
@@ -395,6 +399,41 @@ const PARTS = {
   'faq-proc': () => faq(FAQ_PROC), 'faq-home': () => faq(FAQ_HOME), 'faq-tour': () => faq(FAQ_TOUR), procpick: () => procPick(),
 };
 
+/* ---------- Imágenes: width/height reales + carga diferida ---------- */
+const dimCache = new Map();
+function imgSize(src) {
+  if (dimCache.has(src)) return dimCache.get(src);
+  const fp = join(ROOT, src.replace(/^\//, ''));
+  let d = null;
+  if (existsSync(fp)) {
+    const b = readFileSync(fp);
+    if (b[0] === 0x89 && b[1] === 0x50) d = [b.readUInt32BE(16), b.readUInt32BE(20)];
+    else if (b[0] === 0xff && b[1] === 0xd8) {
+      let o = 2;
+      while (o < b.length) {
+        if (b[o] !== 0xff) { o++; continue; }
+        const m = b[o + 1], len = b.readUInt16BE(o + 2);
+        if (m >= 0xc0 && m <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(m)) { d = [b.readUInt16BE(o + 7), b.readUInt16BE(o + 5)]; break; }
+        o += 2 + len;
+      }
+    }
+  }
+  dimCache.set(src, d);
+  return d;
+}
+function polish(html) {
+  html = html.replace(/<main>/, '<main id="main" tabindex="-1">');
+  return html.replace(/<img\b([^>]*?)>/g, (tag, attrs) => {
+    const src = (attrs.match(/\ssrc="([^"]+)"/) || [])[1];
+    if (!src || !src.startsWith('/assets/')) return tag;
+    let a = attrs;
+    if (!/\swidth=/.test(a)) { const d = imgSize(src); if (d) a += ` width="${d[0]}" height="${d[1]}"`; }
+    if (!/\sloading=/.test(a) && !/fetchpriority=/.test(a)) a += ' loading="lazy"';
+    if (!/\sdecoding=/.test(a)) a += ' decoding="async"';
+    return `<img${a}>`;
+  });
+}
+
 for (const [file, page] of Object.entries(PAGES)) {
   const fp = join(ROOT, file);
   let html = readFileSync(fp, 'utf8');
@@ -402,7 +441,7 @@ for (const [file, page] of Object.entries(PAGES)) {
     const re = new RegExp(`(<!-- @${name} -->)[\\s\\S]*?(<!-- @/${name} -->)`, 'g');
     html = html.replace(re, (_, a, b) => `${a}${fn(file, page)}${b}`);
   }
-  writeFileSync(fp, html);
+  writeFileSync(fp, polish(html));
   console.log('✓', file);
 }
 
@@ -450,7 +489,7 @@ ${header(null, page)}
     </div>
   </div>
   <figure class="proc-hero-media reveal">
-    <img src="/assets/img/${s.img}" alt="${esc(s.name)} con el Dr. Diego Carrascal en Medellín">
+    <img src="/assets/img/${s.img}" alt="${esc(s.name)} con el Dr. Diego Carrascal en Medellín" fetchpriority="high" loading="eager">
     <figcaption><img src="/assets/img/dr-diego-carrascal-retrato.jpg" alt=""><span><strong>Dr. Diego Carrascal</strong>Máster en Medicina Estética · Madrid</span></figcaption>
   </figure>
 </section>
@@ -526,7 +565,7 @@ ${scripts()}
 </html>
 `;
   mkdirSync(join(ROOT, 'procedimientos'), { recursive: true });
-  writeFileSync(join(ROOT, 'procedimientos', d.slug + '.html'), html);
+  writeFileSync(join(ROOT, 'procedimientos', d.slug + '.html'), polish(html));
   console.log('✓ procedimientos/' + d.slug + '.html');
 }
 SERVICES.forEach(procPage);

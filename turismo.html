@@ -2,7 +2,8 @@
 <html lang="es-CO">
 <head><!-- @head -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>Turismo médico en Medellín | Tratamientos estéticos y qué hacer</title>
 <meta name="description" content="¿Vienes de otra ciudad o país? Planea tu tratamiento estético en Medellín con el Dr. Diego Carrascal: qué hacer en la ciudad, dónde hospedarte, itinerario sugerido y preguntas frecuentes.">
 <link rel="canonical" href="https://pagina-diego-carrascal-7xmd.vercel.app/turismo">
@@ -32,6 +33,8 @@
 <link rel="apple-touch-icon" href="/assets/img/marca/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <script>try{var v=sessionStorage.getItem('dc-visited');sessionStorage.setItem('dc-visited','1');document.documentElement.className+=v?' return-visit':' first-visit'}catch(e){}</script>
@@ -291,7 +294,7 @@
     "@type": "ImageObject",
     "url": "https://pagina-diego-carrascal-7xmd.vercel.app/assets/img/og-dr-diego-carrascal.jpg"
    },
-   "dateModified": "2026-10-16",
+   "dateModified": "2026-10-27",
    "breadcrumb": {
     "@id": "https://pagina-diego-carrascal-7xmd.vercel.app/turismo#breadcrumb"
    }
@@ -374,16 +377,17 @@
 <!-- @/head --></head>
 <body data-page="turismo">
 <!-- @header -->
+<a class="skip" href="#main">Saltar al contenido</a>
 <div class="loader" id="loader" aria-hidden="true">
-  <img src="/assets/img/marca/logo-vertical-claro.png" alt="" class="loader-sign" width="700" height="765">
+  <img src="/assets/img/marca/logo-vertical-claro.png" alt="" class="loader-sign" width="700" height="765" loading="eager" decoding="async">
   <div class="loader-bar"><span></span></div>
 </div>
-<div class="curtain" id="curtain" aria-hidden="true"><img src="/assets/img/marca/icono-dorado.png" alt="" width="600" height="397"></div>
+<div class="curtain" id="curtain" aria-hidden="true"><img src="/assets/img/marca/icono-dorado.png" alt="" width="600" height="397" loading="eager" decoding="async"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
-  <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio">
-    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201">
+  <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio" translate="no">
+    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager" decoding="async">
   </a>
   <nav class="nav-links" aria-label="Principal">
     <a href="/">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo" class="is-active" aria-current="page">Turismo médico</a><a href="/contacto">Contacto</a>
@@ -393,7 +397,7 @@
   <button class="nav-burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 
-<div class="menu" id="menu">
+<div class="menu" id="menu" inert aria-hidden="true">
   <nav aria-label="Menú móvil"><a href="/">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo" class="is-active" aria-current="page">Turismo médico</a><a href="/contacto">Contacto</a></nav>
   <div class="menu-foot">
     <a href="/contacto" class="btn btn-gold">Agendar cita</a>
@@ -402,11 +406,11 @@
 </div>
 <!-- @/header -->
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- PORTADA -->
 <section class="tour-hero">
-  <div class="tour-hero-bg"><img src="/assets/img/turismo/medellin-atardecer.jpg" alt="Medellín al atardecer" class="parallax"></div>
+  <div class="tour-hero-bg"><img src="/assets/img/turismo/medellin-atardecer.jpg" alt="Medellín al atardecer" class="parallax" fetchpriority="high" loading="eager" width="1400" height="928" decoding="async"></div>
   <div class="wrap tour-hero-copy">
     <p class="eyebrow light reveal"><span class="dot"></span> Turismo médico · Medellín</p>
     <h1 class="h1 light" data-split>Turismo médico en Medellín, la ciudad de la <em>eterna primavera</em></h1>
@@ -470,52 +474,52 @@
     </div>
     <p class="todo-note">Cada plan indica su nivel de esfuerzo: <b class="lvl lvl-1">Suave</b> <b class="lvl lvl-2">Moderado</b> <b class="lvl lvl-3">Activo</b>. Así eliges según tu recuperación.</p>
   </div>
-  <div class="chips todo-filter" role="tablist" aria-label="Filtrar planes">
-    <button class="chip is-on" role="tab" aria-selected="true" data-cat="todos">Todos</button>
-    <button class="chip" role="tab" aria-selected="false" data-cat="suave">Planes suaves</button>
-    <button class="chip" role="tab" aria-selected="false" data-cat="cultura">Cultura</button>
-    <button class="chip" role="tab" aria-selected="false" data-cat="naturaleza">Naturaleza</button>
-    <button class="chip" role="tab" aria-selected="false" data-cat="escapada">Escapadas de un día</button>
+  <div class="chips todo-filter" role="group" aria-label="Filtrar planes">
+    <button type="button" class="chip is-on" aria-pressed="true" data-cat="todos">Todos</button>
+    <button type="button" class="chip" aria-pressed="false" data-cat="suave">Planes suaves</button>
+    <button type="button" class="chip" aria-pressed="false" data-cat="cultura">Cultura</button>
+    <button type="button" class="chip" aria-pressed="false" data-cat="naturaleza">Naturaleza</button>
+    <button type="button" class="chip" aria-pressed="false" data-cat="escapada">Escapadas de un día</button>
   </div>
   <div class="todo-grid" id="todoGrid" aria-live="polite"><!-- @tours -->
 <article class="tour" data-cats="cultura">
-  <div class="tour-img"><img src="/assets/img/turismo/comuna-13.jpg" alt="Comuna 13 · Graffitour, Medellín" loading="lazy"><b class="lvl lvl-2">Moderado</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/comuna-13.jpg" alt="Comuna 13 · Graffitour, Medellín" loading="lazy" width="1400" height="934" decoding="async"><b class="lvl lvl-2">Moderado</b></div>
   <div class="tour-body"><h3>Comuna 13 · Graffitour</h3><p>Arte urbano, escaleras eléctricas al aire libre, música y la historia de transformación de uno de los barrios más emblemáticos de la ciudad.</p><span class="tour-time">≈ 30 min desde El Poblado</span></div>
 </article>
 <article class="tour" data-cats="naturaleza">
-  <div class="tour-img"><img src="/assets/img/turismo/metrocable.jpg" alt="Metrocable y Parque Arví, Medellín" loading="lazy"><b class="lvl lvl-2">Moderado</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/metrocable.jpg" alt="Metrocable y Parque Arví, Medellín" loading="lazy" width="1400" height="934" decoding="async"><b class="lvl lvl-2">Moderado</b></div>
   <div class="tour-body"><h3>Metrocable y Parque Arví</h3><p>Sube en teleférico sobre las montañas del valle y llega a un parque natural con senderos, bosque y mercados campesinos.</p><span class="tour-time">≈ 1 h en Metro y Metrocable</span></div>
 </article>
 <article class="tour" data-cats="cultura suave">
-  <div class="tour-img"><img src="/assets/img/turismo/plaza-botero.jpg" alt="Plaza Botero, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/plaza-botero.jpg" alt="Plaza Botero, Medellín" loading="lazy" width="1400" height="2100" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>Plaza Botero</h3><p>Esculturas monumentales de Fernando Botero al aire libre, frente al Palacio de la Cultura y junto al Museo de Antioquia.</p><span class="tour-time">≈ 25 min en Metro</span></div>
 </article>
 <article class="tour" data-cats="naturaleza suave">
-  <div class="tour-img"><img src="/assets/img/turismo/flores.jpg" alt="Jardín Botánico, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/flores.jpg" alt="Jardín Botánico, Medellín" loading="lazy" width="1400" height="2106" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>Jardín Botánico</h3><p>Orquideorama, lagos y senderos tranquilos. Al lado, Parque Explora con su acuario y museo interactivo.</p><span class="tour-time">≈ 30 min desde El Poblado</span></div>
 </article>
 <article class="tour" data-cats="suave cultura">
-  <div class="tour-img"><img src="/assets/img/turismo/poblado-verde.jpg" alt="El Poblado y Provenza, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/poblado-verde.jpg" alt="El Poblado y Provenza, Medellín" loading="lazy" width="1400" height="1050" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>El Poblado y Provenza</h3><p>Cafés de especialidad, restaurantes y diseño local en las calles arboladas alrededor del consultorio.</p><span class="tour-time">A minutos del consultorio</span></div>
 </article>
 <article class="tour" data-cats="suave">
-  <div class="tour-img"><img src="/assets/img/turismo/medellin-noche.jpg" alt="Miradores de noche, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/medellin-noche.jpg" alt="Miradores de noche, Medellín" loading="lazy" width="1400" height="850" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>Miradores de noche</h3><p>Medellín iluminada desde las montañas. Un plan tranquilo para ver el atardecer y la ciudad encendida.</p><span class="tour-time">≈ 20 min por Las Palmas</span></div>
 </article>
 <article class="tour" data-cats="escapada suave">
-  <div class="tour-img"><img src="/assets/img/turismo/guatape-calles.jpg" alt="Guatapé, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/guatape-calles.jpg" alt="Guatapé, Medellín" loading="lazy" width="1400" height="934" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>Guatapé</h3><p>Pueblo de zócalos coloridos a orillas del embalse más famoso de Antioquia. Paseos en lancha y gastronomía local.</p><span class="tour-time">≈ 2 h por carretera</span></div>
 </article>
 <article class="tour" data-cats="escapada naturaleza">
-  <div class="tour-img"><img src="/assets/img/turismo/piedra-penol.jpg" alt="Piedra del Peñol, Medellín" loading="lazy"><b class="lvl lvl-3">Activo</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/piedra-penol.jpg" alt="Piedra del Peñol, Medellín" loading="lazy" width="1400" height="2100" decoding="async"><b class="lvl lvl-3">Activo</b></div>
   <div class="tour-body"><h3>Piedra del Peñol</h3><p>Más de 700 escalones hasta la cima para una de las vistas más impresionantes de Colombia. Mejor cuando ya estés recuperado.</p><span class="tour-time">≈ 2 h por carretera</span></div>
 </article>
 <article class="tour" data-cats="escapada naturaleza suave">
-  <div class="tour-img"><img src="/assets/img/turismo/santa-elena.jpg" alt="Santa Elena, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/santa-elena.jpg" alt="Santa Elena, Medellín" loading="lazy" width="1400" height="932" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>Santa Elena</h3><p>Tierra de silleteros: fincas de flores, tradición paisa y aire de montaña para un día tranquilo.</p><span class="tour-time">≈ 45 min desde El Poblado</span></div>
 </article>
 <article class="tour" data-cats="escapada suave">
-  <div class="tour-img"><img src="/assets/img/turismo/cafe.jpg" alt="Ruta del café, Medellín" loading="lazy"><b class="lvl lvl-1">Suave</b></div>
+  <div class="tour-img"><img src="/assets/img/turismo/cafe.jpg" alt="Ruta del café, Medellín" loading="lazy" width="1400" height="2100" decoding="async"><b class="lvl lvl-1">Suave</b></div>
   <div class="tour-body"><h3>Ruta del café</h3><p>Visita una finca cafetera de Antioquia y descubre el recorrido del grano a la taza, con paisaje de montaña.</p><span class="tour-time">Día completo</span></div>
 </article><!-- @/tours --></div>
 </section>
@@ -528,37 +532,37 @@
       <h2 class="h2" id="tripTitle" data-split>Cinco días, <em>a tu ritmo</em></h2>
       <p class="lead">Un ejemplo de cómo combinar tu tratamiento con la ciudad. Tu plan real depende del procedimiento y de las indicaciones del doctor.</p>
       <!-- @days -->
-<div class="days" role="tablist" aria-label="Días del itinerario">
-  <button class="day is-on" role="tab" aria-selected="true" aria-controls="day-1"><span>Día 1</span>Llegada</button>
-  <button class="day" role="tab" aria-selected="false" aria-controls="day-2"><span>Día 2</span>Valoración y tratamiento</button>
-  <button class="day" role="tab" aria-selected="false" aria-controls="day-3"><span>Día 3</span>Un plan suave</button>
-  <button class="day" role="tab" aria-selected="false" aria-controls="day-4"><span>Día 4</span>Control y ciudad</button>
-  <button class="day" role="tab" aria-selected="false" aria-controls="day-5"><span>Día 5</span>Escapada</button>
+<div class="days" role="group" aria-label="Días del itinerario">
+  <button type="button" class="day is-on" aria-pressed="true" aria-controls="day-1" data-day="1"><span>Día 1</span>Llegada</button>
+  <button type="button" class="day" aria-pressed="false" aria-controls="day-2" data-day="2"><span>Día 2</span>Valoración y tratamiento</button>
+  <button type="button" class="day" aria-pressed="false" aria-controls="day-3" data-day="3"><span>Día 3</span>Un plan suave</button>
+  <button type="button" class="day" aria-pressed="false" aria-controls="day-4" data-day="4"><span>Día 4</span>Control y ciudad</button>
+  <button type="button" class="day" aria-pressed="false" aria-controls="day-5" data-day="5"><span>Día 5</span>Escapada</button>
 </div><!-- @/days -->
     </div>
     <div class="day-cards"><!-- @daycards -->
-<article class="day-card is-on" id="day-1" role="tabpanel">
-  <img src="/assets/img/turismo/medellin-poblado.jpg" alt="" loading="lazy">
+<article class="day-card is-on" id="day-1" aria-label="Día 1: Llegada">
+  <img src="/assets/img/turismo/medellin-poblado.jpg" alt="" loading="lazy" width="1400" height="934" decoding="async">
   <div class="day-body"><span class="day-k">Día 1</span><h3>Llegada</h3>
   <ul><li>Aterriza en el aeropuerto José María Córdova.</li><li>Instálate en El Poblado, cerca del consultorio.</li><li>Cena tranquila en Provenza.</li></ul></div>
 </article>
-<article class="day-card" id="day-2" role="tabpanel">
-  <img src="/assets/img/turismo/poblado-verde.jpg" alt="" loading="lazy">
+<article class="day-card" id="day-2" aria-label="Día 2: Valoración y tratamiento" hidden>
+  <img src="/assets/img/turismo/poblado-verde.jpg" alt="" loading="lazy" width="1400" height="1050" decoding="async">
   <div class="day-body"><span class="day-k">Día 2</span><h3>Valoración y tratamiento</h3>
   <ul><li>Valoración médica especializada con el doctor.</li><li>Tu procedimiento, si es el indicado para ti.</li><li>Tarde de descanso en tu hotel.</li></ul></div>
 </article>
-<article class="day-card" id="day-3" role="tabpanel">
-  <img src="/assets/img/turismo/plaza-botero.jpg" alt="" loading="lazy">
+<article class="day-card" id="day-3" aria-label="Día 3: Un plan suave" hidden>
+  <img src="/assets/img/turismo/plaza-botero.jpg" alt="" loading="lazy" width="1400" height="2100" decoding="async">
   <div class="day-body"><span class="day-k">Día 3</span><h3>Un plan suave</h3>
   <ul><li>Jardín Botánico o Plaza Botero a tu ritmo.</li><li>Café de especialidad en El Poblado.</li><li>Siempre según las indicaciones del doctor.</li></ul></div>
 </article>
-<article class="day-card" id="day-4" role="tabpanel">
-  <img src="/assets/img/turismo/metrocable.jpg" alt="" loading="lazy">
+<article class="day-card" id="day-4" aria-label="Día 4: Control y ciudad" hidden>
+  <img src="/assets/img/turismo/metrocable.jpg" alt="" loading="lazy" width="1400" height="934" decoding="async">
   <div class="day-body"><span class="day-k">Día 4</span><h3>Control y ciudad</h3>
   <ul><li>Control con el doctor, si aplica a tu tratamiento.</li><li>Comuna 13 o Metrocable si ya te sientes bien.</li><li>Atardecer en un mirador.</li></ul></div>
 </article>
-<article class="day-card" id="day-5" role="tabpanel">
-  <img src="/assets/img/turismo/guatape-embalse.jpg" alt="" loading="lazy">
+<article class="day-card" id="day-5" aria-label="Día 5: Escapada" hidden>
+  <img src="/assets/img/turismo/guatape-embalse.jpg" alt="" loading="lazy" width="1400" height="836" decoding="async">
   <div class="day-body"><span class="day-k">Día 5</span><h3>Escapada</h3>
   <ul><li>Día en Guatapé y su embalse.</li><li>Últimas compras y recomendaciones de cuidado.</li><li>Regreso a casa con tu mejor versión.</li></ul></div>
 </article><!-- @/daycards --></div>
@@ -571,11 +575,11 @@
   <h2 class="h2" id="seasonsTitle" data-split>Si puedes elegir fecha, <em>elige bien</em></h2>
   <div class="seasons-grid">
     <figure class="season reveal">
-      <img src="/assets/img/turismo/flores.jpg" alt="Flores en Medellín" loading="lazy">
+      <img src="/assets/img/turismo/flores.jpg" alt="Flores en Medellín" loading="lazy" width="1400" height="2106" decoding="async">
       <figcaption><span>Agosto</span><h3>Feria de las Flores</h3><p>La fiesta más grande de la ciudad: desfile de silleteros, música y flores por todas partes.</p></figcaption>
     </figure>
     <figure class="season reveal">
-      <img src="/assets/img/turismo/medellin-noche.jpg" alt="Medellín iluminada de noche" loading="lazy">
+      <img src="/assets/img/turismo/medellin-noche.jpg" alt="Medellín iluminada de noche" loading="lazy" width="1400" height="850" decoding="async">
       <figcaption><span>Diciembre</span><h3>Alumbrados navideños</h3><p>Medellín se ilumina: recorridos nocturnos, ambiente familiar y temporada de celebración.</p></figcaption>
     </figure>
   </div>
@@ -629,8 +633,8 @@
 <section class="gallery" aria-label="Postales de Medellín y Antioquia">
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <img src="/assets/img/turismo/medellin-laderas.jpg" alt=""><img src="/assets/img/turismo/piedra-penol.jpg" alt=""><img src="/assets/img/turismo/botero-mural.jpg" alt=""><img src="/assets/img/turismo/guatape-calles.jpg" alt=""><img src="/assets/img/turismo/medellin-poblado.jpg" alt=""><img src="/assets/img/turismo/santa-elena.jpg" alt=""><img src="/assets/img/turismo/comuna-13.jpg" alt="">
-      <img src="/assets/img/turismo/medellin-laderas.jpg" alt=""><img src="/assets/img/turismo/piedra-penol.jpg" alt=""><img src="/assets/img/turismo/botero-mural.jpg" alt=""><img src="/assets/img/turismo/guatape-calles.jpg" alt=""><img src="/assets/img/turismo/medellin-poblado.jpg" alt=""><img src="/assets/img/turismo/santa-elena.jpg" alt=""><img src="/assets/img/turismo/comuna-13.jpg" alt="">
+      <img src="/assets/img/turismo/medellin-laderas.jpg" alt="" width="1400" height="2100" loading="lazy" decoding="async"><img src="/assets/img/turismo/piedra-penol.jpg" alt="" width="1400" height="2100" loading="lazy" decoding="async"><img src="/assets/img/turismo/botero-mural.jpg" alt="" width="1400" height="2100" loading="lazy" decoding="async"><img src="/assets/img/turismo/guatape-calles.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async"><img src="/assets/img/turismo/medellin-poblado.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async"><img src="/assets/img/turismo/santa-elena.jpg" alt="" width="1400" height="932" loading="lazy" decoding="async"><img src="/assets/img/turismo/comuna-13.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async">
+      <img src="/assets/img/turismo/medellin-laderas.jpg" alt="" width="1400" height="2100" loading="lazy" decoding="async"><img src="/assets/img/turismo/piedra-penol.jpg" alt="" width="1400" height="2100" loading="lazy" decoding="async"><img src="/assets/img/turismo/botero-mural.jpg" alt="" width="1400" height="2100" loading="lazy" decoding="async"><img src="/assets/img/turismo/guatape-calles.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async"><img src="/assets/img/turismo/medellin-poblado.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async"><img src="/assets/img/turismo/santa-elena.jpg" alt="" width="1400" height="932" loading="lazy" decoding="async"><img src="/assets/img/turismo/comuna-13.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async">
     </div>
   </div>
   <p class="fine wrap">Fotografías de Medellín y Antioquia: Unsplash.</p>
@@ -647,11 +651,11 @@
     <div class="footer-cols">
       <div><span>Procedimientos en Medellín</span><a href="/procedimientos/botox-medellin">Botox en Medellín</a><a href="/procedimientos/rinomodelacion-sin-cirugia-medellin">Rinomodelación sin cirugía en Medellín</a><a href="/procedimientos/armonizacion-facial-medellin">Armonización facial en Medellín</a><a href="/procedimientos/relleno-de-labios-medellin">Relleno de labios en Medellín</a><a href="/procedimientos/bioestimulacion-radiesse-sculptra-medellin">Bioestimulación con Radiesse y Sculptra en Medellín</a><a href="/procedimientos/relleno-de-ojeras-medellin">Relleno de ojeras en Medellín</a><a href="/procedimientos/alectomia-medellin">Alectomía en Medellín</a><a href="/procedimientos/criolipolisis-medellin">Criolipólisis en Medellín</a><a href="/procedimientos/tratamiento-caida-del-cabello-medellin">Tratamiento para la caída del cabello en Medellín</a><a href="/procedimientos/laser-co2-medellin">Láser CO₂ en Medellín</a></div>
       <div><span>Explora</span><a href="/">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo">Turismo médico</a><a href="/contacto">Contacto</a></div>
-      <div><span>Escríbenos</span><a href="https://wa.me/573243245856" target="_blank" rel="noopener">+57 324 324 5856</a><a href="mailto:carrascaldrdiego@gmail.com">carrascaldrdiego@gmail.com</a><p>Todos los días, 7:00 a. m. – 7:00 p. m.</p></div>
+      <div><span>Escríbenos</span><a href="https://wa.me/573243245856" target="_blank" rel="noopener" translate="no">+57 324 324 5856</a><a href="mailto:carrascaldrdiego@gmail.com">carrascaldrdiego@gmail.com</a><p>Todos los días, 7:00 a. m. – 7:00 p. m.</p></div>
       <address><span>Visítanos</span><a href="https://www.google.com/maps/search/?api=1&query=Edificio+Xerox+Cra+43A+15+Sur+15+Medell%C3%ADn" target="_blank" rel="noopener">Edificio Xerox, Cra. 43A #15 Sur 15, piso 8, El Poblado, Medellín, Antioquia</a><p>Sede Apartadó, Urabá</p></address>
       <div><span>Síguenos</span><a href="https://www.instagram.com/drdiegocarrascal/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/share/1arLPPkcZk/" target="_blank" rel="noopener">Facebook</a></div>
     </div>
-    <div class="footer-legal"><span>© 2026 Dr. Diego Carrascal · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
+    <div class="footer-legal"><span>© 2026 <span translate="no">Dr. Diego Carrascal</span> · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
   </div>
 </footer>
 

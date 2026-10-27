@@ -30,15 +30,15 @@ function init() {
   initDays();
   initCompare();
   initMenu();
+  initMarquees();
   initWizard();
   initSpotlight();
   initTransitions();
 
   const ready = initLoader();
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mWords = splitManifesto();
 
-  if (!window.gsap || reduce) {
+  if (!window.gsap || REDUCE) {
     document.documentElement.classList.add('no-pin');
     mWords.forEach(w => (w.style.opacity = 1));
     $$('.step').forEach(s => s.classList.add('is-on'));
@@ -48,11 +48,24 @@ function init() {
   }
 }
 
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* El estado de filtros y pestañas vive en la URL (?necesidad=, ?plan=, ?dia=) para poder compartirlo */
+const getParam = k => new URLSearchParams(location.search).get(k);
+function setParam(k, v, def) {
+  const u = new URL(location.href);
+  if (v == null || v === def) u.searchParams.delete(k); else u.searchParams.set(k, v);
+  history.replaceState(history.state, '', u);
+}
+
+/* Grupo de botones excluyentes (aria-pressed) */
 function chipGroup(chips, onPick) {
-  chips.forEach(chip => chip.addEventListener('click', () => {
-    chips.forEach(c => { c.classList.toggle('is-on', c === chip); c.setAttribute('aria-selected', c === chip); });
+  const pick = chip => {
+    chips.forEach(c => { c.classList.toggle('is-on', c === chip); c.setAttribute('aria-pressed', c === chip); });
     onPick(chip);
-  }));
+  };
+  chips.forEach(chip => chip.addEventListener('click', () => pick(chip)));
+  return pick;
 }
 
 /* ---------- Portada: video opcional (data-video="/assets/video/archivo.mp4") ----------
@@ -63,14 +76,15 @@ function initHeroVideo() {
   if (!src) return;
   const poster = $('.hero-bg, .hero-reel-poster', box);
   const v = document.createElement('video');
-  Object.assign(v, { muted: true, loop: true, autoplay: true, playsInline: true, preload: 'metadata', poster: poster.getAttribute('src') });
+  // Con "reducir movimiento" el video no arranca solo: se muestra la portada con controles
+  Object.assign(v, { muted: true, loop: !REDUCE, autoplay: !REDUCE, controls: REDUCE, playsInline: true, preload: 'metadata', poster: poster.getAttribute('src') });
   v.className = poster.className;
   v.setAttribute('aria-label', box.dataset.label || poster.alt || 'Video');
   v.src = src;
   poster.replaceWith(v);
   $('.hero-reel-play', box)?.remove();
   box.removeAttribute('data-reel');
-  v.play().catch(() => {});
+  if (!REDUCE) v.play().catch(() => {});
 }
 
 /* ---------- Videos de Instagram en ventana emergente (se cargan solo al hacer clic) ---------- */
@@ -78,35 +92,38 @@ function initVideos() {
   const modal = $('#vmodal');
   if (!modal) return;
   const frame = $('.vmodal-frame', modal);
-  const close = () => { modal.close(); frame.innerHTML = ''; };
+  let opener = null;
+  const close = () => { modal.close(); };
+  modal.addEventListener('close', () => { frame.innerHTML = ''; opener && opener.focus(); });
   $$('[data-reel]').forEach(card => card.addEventListener('click', () => {
+    opener = card;
     frame.innerHTML = `<iframe src="https://www.instagram.com/reel/${card.dataset.reel}/embed/" title="${card.getAttribute('aria-label') || card.dataset.label || 'Video'}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
     modal.showModal();
   }));
   $('.vmodal-close', modal).addEventListener('click', close);
   modal.addEventListener('click', e => { if (e.target === modal) close(); });
-  modal.addEventListener('cancel', () => (frame.innerHTML = ''));
 }
 
 /* ---------- Buscador de tratamiento ---------- */
 function initFinder() {
   const out = $('#finderResult');
   if (!out) return;
+  const chips = $$('#finder .chip');
   const show = key => {
     out.innerHTML = NEEDS[key].map(id => {
       const card = $(`#srv-${id}`);
       if (!card) return '';
-      const name = $('h3', card).textContent;
-      const page = $('h3 a', card).getAttribute('href');
+      const img = $('img', card);
       return `<div class="fr-card">
-        <img src="${$('img', card).getAttribute('src')}" alt="">
-        <div><h3>${name}</h3><p>${$('li', card).textContent}</p>
-        <a href="${page}">Ver procedimiento →</a></div>
+        <img src="${img.getAttribute('src')}" alt="" width="${img.getAttribute('width') || 1400}" height="${img.getAttribute('height') || 934}" loading="lazy" decoding="async">
+        <div><h3>${$('h3', card).textContent}</h3><p>${$('li', card).textContent}</p>
+        <a href="${$('h3 a', card).getAttribute('href')}">Ver procedimiento →</a></div>
       </div>`;
     }).join('');
   };
-  chipGroup($$('#finder .chip'), c => show(c.dataset.need));
-  show('arrugas');
+  const pick = chipGroup(chips, c => { show(c.dataset.need); setParam('necesidad', c.dataset.need, 'arrugas'); });
+  const start = chips.find(c => c.dataset.need === getParam('necesidad')) || chips[0];
+  pick(start);
 }
 
 /* ---------- Turismo: filtro de planes ---------- */
@@ -114,16 +131,20 @@ function initTours() {
   const grid = $('#todoGrid');
   if (!grid) return;
   const cards = $$('.tour', grid);
-  chipGroup($$('.todo-filter .chip'), c => {
+  const chips = $$('.todo-filter .chip');
+  const pick = chipGroup(chips, c => {
     const cat = c.dataset.cat;
     let k = 0;
     cards.forEach(t => {
       const on = cat === 'todos' || t.dataset.cats.split(' ').includes(cat);
       t.hidden = !on;
-      if (on) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = ''; t.style.animationDelay = (k++ * 0.05) + 's'; }
+      if (on) t.style.animationDelay = (k++ * 0.05) + 's';
     });
+    setParam('plan', cat, 'todos');
     window.ScrollTrigger && ScrollTrigger.refresh();
   });
+  const start = chips.find(c => c.dataset.cat === getParam('plan'));
+  if (start) pick(start);
 }
 
 /* ---------- Turismo: itinerario ---------- */
@@ -131,26 +152,62 @@ function initDays() {
   const btns = $$('.day');
   if (!btns.length) return;
   const cards = $$('.day-card');
-  btns.forEach((b, i) => b.addEventListener('click', () => {
-    btns.forEach(x => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b); });
-    cards.forEach((c, k) => c.classList.toggle('is-on', k === i));
-  }));
+  const show = i => {
+    btns.forEach((x, k) => { x.classList.toggle('is-on', k === i); x.setAttribute('aria-pressed', k === i); });
+    cards.forEach((c, k) => { c.classList.toggle('is-on', k === i); c.hidden = k !== i; });
+  };
+  btns.forEach((b, i) => b.addEventListener('click', () => { show(i); setParam('dia', String(i + 1), '1'); }));
+  const d = parseInt(getParam('dia'), 10);
+  if (d >= 1 && d <= btns.length) show(d - 1);
 }
 
 /* ---------- Comparador antes / después ---------- */
 function initCompare() {
   $$('.compare').forEach(c => {
-    $('.compare-range', c).addEventListener('input', e => c.style.setProperty('--pos', e.target.value + '%'));
+    $('.compare-range', c).addEventListener('input', e => {
+      const v = e.target.value;
+      c.style.setProperty('--pos', v + '%');
+      e.target.setAttribute('aria-valuetext', `${v} % antes, ${100 - v} % después`);
+    });
   });
 }
 
-/* ---------- Menú móvil ---------- */
+/* ---------- Menú móvil: inerte cerrado, Escape cierra y el foco vuelve al botón ---------- */
 function initMenu() {
-  const burger = $('#burger');
-  if (!burger) return;
-  const toggle = open => { document.body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open); };
+  const burger = $('#burger'), menu = $('#menu');
+  if (!burger || !menu) return;
+  const toggle = open => {
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    menu.inert = !open;
+    menu.setAttribute('aria-hidden', !open);
+    if (open) $('a', menu).focus(); else burger.focus();
+  };
   burger.addEventListener('click', () => toggle(!document.body.classList.contains('menu-open')));
-  $$('#menu a').forEach(a => a.addEventListener('click', () => toggle(false)));
+  $$('a', menu).forEach(a => a.addEventListener('click', () => toggle(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) toggle(false);
+  });
+}
+
+/* ---------- Carruseles automáticos: botón para pausar (movimiento > 5 s) ---------- */
+function initMarquees() {
+  $$('.marquee').forEach(m => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'marquee-toggle';
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-label', 'Pausar el carrusel de fotos');
+    b.innerHTML = '<span aria-hidden="true">❚❚</span>';
+    b.addEventListener('click', () => {
+      const paused = m.classList.toggle('is-paused');
+      b.setAttribute('aria-pressed', paused);
+      b.setAttribute('aria-label', paused ? 'Reanudar el carrusel de fotos' : 'Pausar el carrusel de fotos');
+      b.innerHTML = `<span aria-hidden="true">${paused ? '▶' : '❚❚'}</span>`;
+    });
+    m.after(b);
+  });
 }
 
 /* ---------- Agenda por pasos → WhatsApp ---------- */
@@ -159,42 +216,66 @@ function initWizard() {
   if (!wizard) return;
   const steps = $$('.wstep', wizard);
   const dots = $$('.wizard-steps span', wizard);
-  const state = { proc: null, sede: null };
+  const status = $('#wizardStatus');
+  const state = { proc: null, sede: null, dirty: false, sent: false };
   let idx = 0;
 
   const procBtn = id => $(`#pickProc [data-v="${id}"]`);
   const procName = id => id === 'valoracion' ? 'valoración general' : procBtn(id).textContent.trim();
 
+  const setErr = (inp, msg) => {
+    const box = $('#err-' + inp.name);
+    inp.toggleAttribute('aria-invalid', !!msg);
+    inp.classList.toggle('err', !!msg);
+    if (box) box.textContent = msg || '';
+  };
+
   const go = i => {
     idx = i;
     steps.forEach((s, k) => s.classList.toggle('is-on', k === i));
     dots.forEach((d, k) => d.classList.toggle('on', k <= i));
+    status.textContent = `Paso ${i + 1} de ${steps.length}: ${$('legend', steps[i]).textContent}`;
+    const first = $('button.pick-opt, input', steps[i]);
+    first && first.focus({ preventScroll: true });
     if (i === 2) $('#wSummary').textContent =
       `${wizard.elements.nombre.value.trim()}, se abrirá WhatsApp con tu solicitud de ${procName(state.proc)} lista para enviar.`;
   };
   const selectProc = id => {
     if (!procBtn(id)) return;
     state.proc = id;
-    $$('#pickProc .pick-opt').forEach(b => b.classList.toggle('is-on', b.dataset.v === id));
-    $('[data-step="1"] .w-next', wizard).disabled = false;
+    $$('#pickProc .pick-opt').forEach(b => { b.classList.toggle('is-on', b.dataset.v === id); b.setAttribute('aria-pressed', b.dataset.v === id); });
+    $('#err-proc').textContent = '';
   };
-  $('#pickProc').addEventListener('click', e => { const b = e.target.closest('.pick-opt'); if (b) selectProc(b.dataset.v); });
+  $$('#pickProc .pick-opt, #pickSede .pick-opt').forEach(b => b.setAttribute('aria-pressed', 'false'));
+  $('#pickProc').addEventListener('click', e => { const b = e.target.closest('.pick-opt'); if (b) { selectProc(b.dataset.v); state.dirty = true; } });
   $('#pickSede').addEventListener('click', e => {
     const b = e.target.closest('.pick-opt'); if (!b) return;
     state.sede = b.dataset.v;
-    $$('#pickSede .pick-opt').forEach(x => x.classList.toggle('is-on', x === b));
+    $$('#pickSede .pick-opt').forEach(x => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-pressed', x === b); });
   });
 
   // Viene desde un procedimiento: /contacto?proc=rino
-  const pre = new URLSearchParams(location.search).get('proc');
+  const pre = getParam('proc');
   if (pre) selectProc(pre);
+
+  wizard.addEventListener('input', e => {
+    state.dirty = true;
+    if (e.target.classList.contains('err') && e.target.value.trim()) setErr(e.target, '');
+  });
 
   $$('.w-back', wizard).forEach(b => b.addEventListener('click', () => go(idx - 1)));
   $$('.w-next', wizard).forEach(b => b.addEventListener('click', () => {
+    if (idx === 0 && !state.proc) {
+      $('#err-proc').textContent = 'Elige un procedimiento o “Aún no sé, quiero una valoración” para continuar.';
+      $('#pickProc .pick-opt').focus();
+      return;
+    }
     if (idx === 1) {
-      const req = ['nombre', 'whatsapp'].map(n => wizard.elements[n]);
-      req.forEach(inp => inp.classList.toggle('err', !inp.value.trim()));
-      const bad = req.find(i => i.classList.contains('err'));
+      const f = wizard.elements;
+      setErr(f.nombre, f.nombre.value.trim() ? '' : 'Escribe tu nombre para saber cómo llamarte.');
+      const tel = f.whatsapp.value.replace(/\D/g, '');
+      setErr(f.whatsapp, tel.length >= 7 ? '' : 'Escribe tu número de WhatsApp, por ejemplo +57 300 000 0000.');
+      const bad = $('[aria-invalid]', steps[1]);
       if (bad) { bad.focus(); return; }
     }
     go(idx + 1);
@@ -214,7 +295,15 @@ function initWizard() {
       v('patologia') && `• Patología: ${v('patologia')}`,
       state.sede && `• Sede: ${state.sede}`,
     ].filter(Boolean);
+    state.sent = true;
+    status.textContent = 'Abriendo WhatsApp…';
     window.open(waLink(lines.join('\n')), '_blank', 'noopener');
+  });
+
+  // Aviso antes de salir con datos sin enviar
+  window.dcUnsaved = () => state.dirty && !state.sent;
+  addEventListener('beforeunload', e => {
+    if (state.dirty && !state.sent) { e.preventDefault(); e.returnValue = ''; }
   });
 }
 
@@ -248,7 +337,8 @@ function initTransitions() {
   addEventListener('pageshow', e => { if (e.persisted) document.documentElement.classList.remove('leaving'); });
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
-    if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.defaultPrevented) return;
+    if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
+    if (REDUCE || (window.dcUnsaved && window.dcUnsaved())) return; // navegación normal (y aviso del navegador si hay datos)
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin || /\.[a-z0-9]+$/i.test(url.pathname) && !/\.html$/.test(url.pathname)) return;
     if (url.pathname === location.pathname) return; // mismo documento: lo maneja el scroll suave
@@ -409,10 +499,18 @@ function initMotion(ready, mWords) {
     const mm = gsap.matchMedia();
     mm.add('(min-width: 1001px)', () => {
       const dist = () => track.scrollWidth - innerWidth;
+      // Teclado: al enfocar un enlace de una tarjeta, desplazar la página hasta que la tarjeta sea visible
+      const onFocus = e => {
+        const card = e.target.closest('.svc'); const st = ScrollTrigger.getById('svc-pin');
+        if (!card || !st) return;
+        const p = Math.min(1, Math.max(0, (card.offsetLeft - innerWidth * 0.2) / dist()));
+        window.scrollTo(0, st.start + p * (st.end - st.start));
+      };
+      track.addEventListener('focusin', onFocus);
       gsap.to(track, {
         x: () => -dist(), ease: 'none',
         scrollTrigger: {
-          trigger: '.services-pin', pin: true, start: 'top top', end: () => '+=' + dist(),
+          id: 'svc-pin', trigger: '.services-pin', pin: true, start: 'top top', end: () => '+=' + dist(),
           scrub: 0.8, invalidateOnRefresh: true,
           onUpdate: s => gsap.set('#servicesBar', { scaleX: s.progress }),
         },

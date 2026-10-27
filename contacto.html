@@ -2,7 +2,8 @@
 <html lang="es-CO">
 <head><!-- @head -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>Contacto y citas | Dr. Diego Carrascal, Medicina Estética</title>
 <meta name="description" content="Agenda tu valoración con el Dr. Diego Carrascal en El Poblado, Medellín, o en Apartadó. WhatsApp +57 324 324 5856. Atención todos los días de 7:00 a. m. a 7:00 p. m.">
 <link rel="canonical" href="https://pagina-diego-carrascal-7xmd.vercel.app/contacto">
@@ -32,6 +33,8 @@
 <link rel="apple-touch-icon" href="/assets/img/marca/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <script>try{var v=sessionStorage.getItem('dc-visited');sessionStorage.setItem('dc-visited','1');document.documentElement.className+=v?' return-visit':' first-visit'}catch(e){}</script>
@@ -291,7 +294,7 @@
     "@type": "ImageObject",
     "url": "https://pagina-diego-carrascal-7xmd.vercel.app/assets/img/og-dr-diego-carrascal.jpg"
    },
-   "dateModified": "2026-10-16",
+   "dateModified": "2026-10-27",
    "breadcrumb": {
     "@id": "https://pagina-diego-carrascal-7xmd.vercel.app/contacto#breadcrumb"
    }
@@ -320,16 +323,17 @@
 <!-- @/head --></head>
 <body data-page="contacto" class="dark-top">
 <!-- @header -->
+<a class="skip" href="#main">Saltar al contenido</a>
 <div class="loader" id="loader" aria-hidden="true">
-  <img src="/assets/img/marca/logo-vertical-claro.png" alt="" class="loader-sign" width="700" height="765">
+  <img src="/assets/img/marca/logo-vertical-claro.png" alt="" class="loader-sign" width="700" height="765" loading="eager" decoding="async">
   <div class="loader-bar"><span></span></div>
 </div>
-<div class="curtain" id="curtain" aria-hidden="true"><img src="/assets/img/marca/icono-dorado.png" alt="" width="600" height="397"></div>
+<div class="curtain" id="curtain" aria-hidden="true"><img src="/assets/img/marca/icono-dorado.png" alt="" width="600" height="397" loading="eager" decoding="async"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
-  <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio">
-    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201">
+  <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio" translate="no">
+    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager" decoding="async">
   </a>
   <nav class="nav-links" aria-label="Principal">
     <a href="/">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo">Turismo médico</a><a href="/contacto" class="is-active" aria-current="page">Contacto</a>
@@ -339,7 +343,7 @@
   <button class="nav-burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 
-<div class="menu" id="menu">
+<div class="menu" id="menu" inert aria-hidden="true">
   <nav aria-label="Menú móvil"><a href="/">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo">Turismo médico</a><a href="/contacto" class="is-active" aria-current="page">Contacto</a></nav>
   <div class="menu-foot">
     <a href="/contacto" class="btn btn-gold">Agendar cita</a>
@@ -348,7 +352,7 @@
 </div>
 <!-- @/header -->
 
-<main>
+<main id="main" tabindex="-1">
 
 <section class="booking booking-page" id="agenda">
   <div class="wrap booking-grid">
@@ -363,12 +367,12 @@
       </ul>
     </div>
 
-    <form class="wizard reveal" id="wizard" novalidate>
+    <form class="wizard reveal" id="wizard" novalidate aria-describedby="wizardStatus">
       <div class="wizard-steps" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
 
       <fieldset class="wstep is-on" data-step="1">
-        <legend>¿Qué procedimiento te interesa?</legend>
-        <div class="pick" id="pickProc"><!-- @procpick --><button type="button" class="pick-opt" data-v="botox">Toxina botulínica (Botox)</button>
+        <legend id="lgProc">¿Qué procedimiento te interesa?</legend>
+        <div class="pick" id="pickProc" role="group" aria-labelledby="lgProc"><!-- @procpick --><button type="button" class="pick-opt" data-v="botox">Toxina botulínica (Botox)</button>
 <button type="button" class="pick-opt" data-v="rino">Rinomodelación sin cirugía</button>
 <button type="button" class="pick-opt" data-v="armonizacion">Armonización facial</button>
 <button type="button" class="pick-opt" data-v="labios">Relleno de labios</button>
@@ -379,19 +383,20 @@
 <button type="button" class="pick-opt" data-v="capilar">Terapias capilares</button>
 <button type="button" class="pick-opt" data-v="laser">Láser CO₂</button>
 <button type="button" class="pick-opt" data-v="valoracion">Aún no sé, quiero una valoración</button><!-- @/procpick --></div>
-        <button type="button" class="btn btn-gold w-next" disabled>Continuar →</button>
+        <p class="field-err" id="err-proc" aria-live="polite"></p>
+        <button type="button" class="btn btn-gold w-next">Continuar con mis datos →</button>
       </fieldset>
 
       <fieldset class="wstep" data-step="2">
         <legend>Cuéntanos de ti</legend>
         <div class="fields">
-          <label>Nombre*<input name="nombre" required autocomplete="given-name"></label>
-          <label>Apellidos<input name="apellidos" autocomplete="family-name"></label>
-          <label>WhatsApp*<input name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="+57"></label>
-          <label>Correo<input name="correo" type="email" autocomplete="email"></label>
-          <label>Ciudad<input name="ciudad" autocomplete="address-level2"></label>
-          <label>Edad<input name="edad" inputmode="numeric"></label>
-          <label class="full">Patología o condición de salud (opcional)<input name="patologia"></label>
+          <label>Nombre*<input name="nombre" required autocomplete="given-name" placeholder="Ej.: María…" aria-describedby="err-nombre"><span class="field-err" id="err-nombre" aria-live="polite"></span></label>
+          <label>Apellidos<input name="apellidos" autocomplete="family-name" placeholder="Ej.: Gómez…"></label>
+          <label>WhatsApp*<input name="whatsapp" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+57 300 000 0000…" aria-describedby="err-whatsapp"><span class="field-err" id="err-whatsapp" aria-live="polite"></span></label>
+          <label>Correo<input name="correo" type="email" autocomplete="email" spellcheck="false" placeholder="tu@correo.com…"></label>
+          <label>Ciudad<input name="ciudad" autocomplete="address-level2" placeholder="Ej.: Medellín…"></label>
+          <label>Edad<input name="edad" inputmode="numeric" autocomplete="off" placeholder="Ej.: 32…"></label>
+          <label class="full">Patología o condición de salud (opcional)<input name="patologia" autocomplete="off" placeholder="Ej.: hipertensión, alergias…"></label>
         </div>
         <div class="w-nav">
           <button type="button" class="btn btn-ghost light w-back">← Atrás</button>
@@ -400,18 +405,19 @@
       </fieldset>
 
       <fieldset class="wstep" data-step="3">
-        <legend>¿Dónde prefieres tu cita?</legend>
-        <div class="pick" id="pickSede">
+        <legend id="lgSede">¿Dónde prefieres tu cita?</legend>
+        <div class="pick" id="pickSede" role="group" aria-labelledby="lgSede">
           <button type="button" class="pick-opt" data-v="Medellín">Medellín<small>El Poblado</small></button>
           <button type="button" class="pick-opt" data-v="Apartadó">Apartadó<small>Urabá</small></button>
           <button type="button" class="pick-opt" data-v="Medellín (vengo de otra ciudad o país)">Vengo de fuera<small>Turismo médico</small></button>
         </div>
-        <p class="w-summary" id="wSummary"></p>
+        <p class="w-summary" id="wSummary" aria-live="polite"></p>
         <div class="w-nav">
           <button type="button" class="btn btn-ghost light w-back">← Atrás</button>
-          <button type="submit" class="btn btn-gold">Enviar por WhatsApp</button>
+          <button type="submit" class="btn btn-gold">Enviar solicitud por WhatsApp</button>
         </div>
       </fieldset>
+      <p class="sr-only" id="wizardStatus" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -434,7 +440,7 @@
       </div>
     </article>
     <article class="sede sede-alt reveal">
-      <div class="sede-visual"><img src="/assets/img/marca/logo-vertical-claro.png" alt="Dr. Diego Carrascal" loading="lazy"></div>
+      <div class="sede-visual"><img src="/assets/img/marca/logo-vertical-claro.png" alt="Dr. Diego Carrascal" loading="lazy" width="700" height="765" decoding="async"></div>
       <div class="sede-body">
         <span class="sede-k">Urabá</span>
         <h3>Apartadó</h3>
@@ -456,11 +462,11 @@
     <div class="footer-cols">
       <div><span>Procedimientos en Medellín</span><a href="/procedimientos/botox-medellin">Botox en Medellín</a><a href="/procedimientos/rinomodelacion-sin-cirugia-medellin">Rinomodelación sin cirugía en Medellín</a><a href="/procedimientos/armonizacion-facial-medellin">Armonización facial en Medellín</a><a href="/procedimientos/relleno-de-labios-medellin">Relleno de labios en Medellín</a><a href="/procedimientos/bioestimulacion-radiesse-sculptra-medellin">Bioestimulación con Radiesse y Sculptra en Medellín</a><a href="/procedimientos/relleno-de-ojeras-medellin">Relleno de ojeras en Medellín</a><a href="/procedimientos/alectomia-medellin">Alectomía en Medellín</a><a href="/procedimientos/criolipolisis-medellin">Criolipólisis en Medellín</a><a href="/procedimientos/tratamiento-caida-del-cabello-medellin">Tratamiento para la caída del cabello en Medellín</a><a href="/procedimientos/laser-co2-medellin">Láser CO₂ en Medellín</a></div>
       <div><span>Explora</span><a href="/">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo">Turismo médico</a><a href="/contacto">Contacto</a></div>
-      <div><span>Escríbenos</span><a href="https://wa.me/573243245856" target="_blank" rel="noopener">+57 324 324 5856</a><a href="mailto:carrascaldrdiego@gmail.com">carrascaldrdiego@gmail.com</a><p>Todos los días, 7:00 a. m. – 7:00 p. m.</p></div>
+      <div><span>Escríbenos</span><a href="https://wa.me/573243245856" target="_blank" rel="noopener" translate="no">+57 324 324 5856</a><a href="mailto:carrascaldrdiego@gmail.com">carrascaldrdiego@gmail.com</a><p>Todos los días, 7:00 a. m. – 7:00 p. m.</p></div>
       <address><span>Visítanos</span><a href="https://www.google.com/maps/search/?api=1&query=Edificio+Xerox+Cra+43A+15+Sur+15+Medell%C3%ADn" target="_blank" rel="noopener">Edificio Xerox, Cra. 43A #15 Sur 15, piso 8, El Poblado, Medellín, Antioquia</a><p>Sede Apartadó, Urabá</p></address>
       <div><span>Síguenos</span><a href="https://www.instagram.com/drdiegocarrascal/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/share/1arLPPkcZk/" target="_blank" rel="noopener">Facebook</a></div>
     </div>
-    <div class="footer-legal"><span>© 2026 Dr. Diego Carrascal · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
+    <div class="footer-legal"><span>© 2026 <span translate="no">Dr. Diego Carrascal</span> · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
   </div>
 </footer>
 
