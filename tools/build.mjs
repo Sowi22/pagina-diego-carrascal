@@ -133,8 +133,8 @@ const FAQ_HOME = [
 const FAQ_TOUR = [
   ['¿Cuántos días debo quedarme en Medellín?',
    'Depende del procedimiento. Los tratamientos no quirúrgicos suelen requerir estancias más cortas que procedimientos quirúrgicos como la alectomía. En la valoración el doctor te recomienda un tiempo para tu caso.'],
-  ['¿Puedo coordinar todo antes de viajar?',
-   'Sí. Escríbenos por WhatsApp con el tratamiento que te interesa y tus fechas, y coordinamos tu valoración para que aproveches tu viaje.'],
+  ['¿Puedo hacer la valoración antes de viajar?',
+   'Sí. Si estás en otra ciudad o país, el doctor puede hacer una valoración virtual antes de tu llegada a Medellín. Escríbenos por WhatsApp con el tratamiento que te interesa y tus fechas.'],
   ['¿Dónde me conviene hospedarme?',
    'En El Poblado, la zona del consultorio. Tiene amplia oferta de hoteles y apartamentos, restaurantes y cafés, y es una de las zonas preferidas por los viajeros.'],
   ['¿Cómo llego desde el aeropuerto?',
@@ -144,6 +144,56 @@ const FAQ_TOUR = [
   ['¿Atienden fuera de Medellín?',
    'Sí. También atendemos en Apartadó, en la región de Urabá.'],
 ];
+
+/* ---------------- Videos (reels de @drdiegocarrascal) ---------------- */
+
+const REELS = {
+  labios: { id: 'DWAdrnGADDP', img: 'labios-belotero.jpg', tag: 'Relleno de labios', text: 'Volumen, definición y naturalidad en un solo tratamiento.' },
+  testimonio: { id: 'C9Q2A2KupSf', img: 'pacientes.jpg', tag: 'Testimonio', text: '“La satisfacción de mis pacientes me motiva a ser mejor cada día.”' },
+  nexus: { id: 'DeiV9MBAcI1', img: 'nexus.jpg', tag: 'Nexus Estética Médica', text: 'Gracias a todos los que confían en nosotros para sus procedimientos.' },
+  mitos: { id: 'Dekz9b2gikg', img: 'mitos.jpg', tag: 'Mitos de la medicina estética', text: 'El doctor responde lo que más se escucha sobre estos tratamientos.' },
+  envejecimiento: { id: 'DevSE2cA614', img: 'envejecimiento.jpg', tag: 'Envejecer bien', text: 'Tratamientos y protocolos para que los años pasen con elegancia.' },
+  puertorico: { id: 'Ddkcx0Igkd-', img: 'botox-puerto-rico.jpg', tag: 'Pacientes de Puerto Rico', text: 'Envejecer con dignidad es que te guste lo que ves en el espejo.' },
+  ultraformer: { id: 'DdaJRZOAuK4', img: 'ultraformer-papada.jpg', tag: 'Ultraformer MPT', text: '¿Papada que te incomoda? Ultrasonido focalizado para definir el rostro.' },
+  virtual: { id: 'DenWkv_gDDK', img: 'valoracion-virtual.jpg', tag: 'Valoración virtual', text: '¿Estás en otra ciudad o país? Te valoramos antes de tu llegada a Medellín.' },
+  equipo: { id: 'De-nRYrFNJ5', img: 'equipo.jpg', tag: 'Nuestro equipo', text: 'Gracias a mi equipo por su apoyo en esta hermosa labor de cada día.' },
+};
+
+const vcard = k => { const r = REELS[k]; return `
+      <button type="button" class="vcard reveal" data-reel="${r.id}" aria-label="Ver video: ${esc(r.tag)}">
+        <img src="/assets/img/videos/${r.img}" alt="">
+        <span class="vplay" aria-hidden="true">▶</span>
+        <span class="vcap"><b>${r.tag}</b>${r.text}</span>
+      </button>`; };
+
+// Sección de videos; con "scroll" la fila se recorre en horizontal al bajar (escritorio)
+const videoSection = (keys, { eyebrow = 'Videos', title, id = 'videos', scroll = false } = {}) => `
+<section class="videos${scroll ? ' videos-scroll' : ''}" id="${id}" aria-labelledby="${id}Title"${scroll ? ' data-hscroll' : ''}>
+  <div class="videos-pin">
+    <div class="wrap sec-head">
+      <div>
+        <p class="eyebrow light">${eyebrow}</p>
+        <h2 class="h2 light" id="${id}Title" data-split>${title}</h2>
+      </div>
+      <a href="${IG}" target="_blank" rel="noopener" class="btn btn-ghost light">Más en Instagram ↗</a>
+    </div>
+    <div class="vgrid${scroll ? ' hscroll-track' : ' wrap'}">${keys.map(vcard).join('')}
+    </div>
+  </div>
+</section>`;
+
+const VIDEO_PARTS = {
+  'videos-home': () => videoSection(['labios', 'testimonio', 'mitos', 'envejecimiento', 'nexus', 'puertorico', 'ultraformer'],
+    { title: 'Mira lo que viven <em>nuestros pacientes</em>', scroll: true }),
+  'videos-about': () => videoSection(['equipo', 'nexus', 'testimonio'],
+    { eyebrow: 'Detrás de cámaras', title: 'Un equipo que <em>te acompaña</em>' }),
+  'videos-tour': () => videoSection(['virtual', 'puertorico', 'testimonio'],
+    { eyebrow: 'Pacientes de todo el mundo', title: 'Tu valoración puede ser <em>virtual</em>' }),
+  'videos-proc': () => videoSection(['mitos', 'envejecimiento', 'labios', 'ultraformer'],
+    { eyebrow: 'Aprende con el doctor', title: 'Resolvemos los <em>mitos</em>' }),
+};
+const PROC_REELS = { botox: ['envejecimiento', 'puertorico'], bio: ['envejecimiento', 'mitos'], labios: ['labios', 'testimonio'],
+  armonizacion: ['mitos', 'testimonio'], rino: ['testimonio', 'mitos'] };
 
 /* ---------------- Páginas ---------------- */
 
@@ -243,12 +293,12 @@ const head = (file, p) => {
   return `
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="dark">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.description)}">
 <link rel="canonical" href="${url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="${p.theme || '#F5F5F7'}">
+<meta name="theme-color" content="#0B0D18">
 <meta name="author" content="Dr. Diego Carrascal">
 <meta name="geo.region" content="CO-ANT">
 <meta name="geo.placename" content="Medellín">
@@ -298,7 +348,7 @@ const header = (file, p) => `
 
 <header class="nav" id="nav">
   <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio" translate="no">
-    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager">
+    <img src="/assets/img/marca/logo-horizontal-claro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager">
   </a>
   <nav class="nav-links" aria-label="Principal">
     ${tabs(p.id)}
@@ -333,6 +383,11 @@ const footer = () => `
     <div class="footer-legal"><span>© 2026 <span translate="no">Dr. Diego Carrascal</span> · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
   </div>
 </footer>
+
+<dialog class="vmodal" id="vmodal" aria-label="Video">
+  <button type="button" class="vmodal-close" aria-label="Cerrar video">×</button>
+  <div class="vmodal-frame"></div>
+</dialog>
 
 <a class="wa-float" href="${waLink('Hola Dr. Diego, quiero agendar una valoración.')}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
@@ -396,7 +451,7 @@ const PARTS = {
   services: () => services(), tours: () => tours(), days: () => days(), daycards: () => dayCards(),
   'home-procs': () => SERVICES.map(s => `
     <a href="${procHref(s.id)}" class="pcard reveal"><img src="/assets/img/${s.img}" alt="${esc(PROCS[s.id].h1)}" loading="lazy"><div><span>${PROCS[s.id].kind}</span><h3>${s.name.split(' (')[0]}</h3></div></a>`).join(''),
-  'faq-proc': () => faq(FAQ_PROC), 'faq-home': () => faq(FAQ_HOME), 'faq-tour': () => faq(FAQ_TOUR), procpick: () => procPick(),
+  'faq-proc': () => faq(FAQ_PROC), ...VIDEO_PARTS, 'faq-home': () => faq(FAQ_HOME), 'faq-tour': () => faq(FAQ_TOUR), procpick: () => procPick(),
 };
 
 /* ---------- Imágenes: width/height reales + carga diferida ---------- */
@@ -540,6 +595,8 @@ ${header(null, page)}
     </div>
   </div>
 </section>
+
+${PROC_REELS[s.id] ? videoSection(PROC_REELS[s.id], { eyebrow: 'Videos', title: `${short} en <em>video</em>`, id: 'videos' }) : ''}
 
 <section class="proc-faq wrap" aria-labelledby="faqTitle">
   <div>

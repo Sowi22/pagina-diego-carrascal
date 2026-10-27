@@ -522,6 +522,34 @@ function initMotion(ready, mWords) {
     });
   }
 
+  // Videos: la fila se recorre en horizontal mientras se baja (escritorio)
+  const mmv = gsap.matchMedia();
+  mmv.add('(min-width: 1001px)', () => {
+    $$('[data-hscroll]').forEach(sec => {
+      const track = $('.hscroll-track', sec);
+      const dist = () => Math.max(0, track.scrollWidth - innerWidth);
+      if (!dist()) return;
+      gsap.to(track, { x: () => -dist(), ease: 'none',
+        scrollTrigger: { trigger: $('.videos-pin', sec), pin: true, start: 'top top', end: () => '+=' + dist(), scrub: 0.8, invalidateOnRefresh: true } });
+      track.addEventListener('focusin', e => {
+        const card = e.target.closest('.vcard'); const st = ScrollTrigger.getAll().find(t => t.trigger === $('.videos-pin', sec));
+        if (card && st) window.scrollTo(0, st.start + Math.min(1, card.offsetLeft / dist()) * (st.end - st.start));
+      });
+    });
+  });
+
+  // Franja de palabras: cada fila avanza en sentido contrario según el scroll
+  $$('.ticker').forEach(t => $$('.ticker-row', t).forEach(row => {
+    const dir = +row.dataset.dir;
+    gsap.fromTo(row, { xPercent: dir > 0 ? -25 : 0 }, { xPercent: dir > 0 ? 0 : -25, ease: 'none',
+      scrollTrigger: { trigger: t, start: 'top bottom', end: 'bottom top', scrub: true } });
+  }));
+
+  // Fotos de tarjetas: se acercan suavemente al entrar en pantalla (solo transform)
+  $$('.xcard img, .pcard img, .tour-img img, .rel img, .season img, .bridge-card img, .tour-band img, .doc-photo img, .mosaic img, .result-card img, .svc-img img, .vcard img')
+    .forEach(img => gsap.fromTo(img, { scale: 1.14 }, { scale: 1, ease: 'none',
+      scrollTrigger: { trigger: img.closest('a, figure, article, button, .compare, div') || img, start: 'top bottom', end: 'center center', scrub: true } }));
+
   // Proceso: el paso visible se activa
   $$('.step').forEach(step => ScrollTrigger.create({
     trigger: step, start: 'top 65%', end: 'bottom 35%',

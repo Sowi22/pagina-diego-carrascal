@@ -3,12 +3,12 @@
 <head><!-- @head -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="dark">
 <title>Dr. Diego Carrascal | Medicina Estética en Medellín y Urabá</title>
 <meta name="description" content="Medicina estética en Medellín con el Dr. Diego Carrascal: botox, rinomodelación sin cirugía, armonización facial, relleno de labios, Radiesse y Sculptra, láser CO₂, criolipólisis y más. Resultados naturales. Agenda tu valoración.">
 <link rel="canonical" href="https://pagina-diego-carrascal-7xmd.vercel.app/">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#F5F5F7">
+<meta name="theme-color" content="#0B0D18">
 <meta name="author" content="Dr. Diego Carrascal">
 <meta name="geo.region" content="CO-ANT">
 <meta name="geo.placename" content="Medellín">
@@ -312,7 +312,7 @@
 
 <header class="nav" id="nav">
   <a href="/" class="nav-logo" aria-label="Dr. Diego Carrascal, inicio" translate="no">
-    <img src="/assets/img/marca/logo-horizontal-oscuro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager" decoding="async">
+    <img src="/assets/img/marca/logo-horizontal-claro.png" alt="Dr. Diego Carrascal" width="900" height="201" loading="eager" decoding="async">
   </a>
   <nav class="nav-links" aria-label="Principal">
     <a href="/" class="is-active" aria-current="page">Inicio</a><a href="/quienes-somos">Quiénes somos</a><a href="/procedimientos">Procedimientos</a><a href="/turismo">Turismo médico</a><a href="/contacto">Contacto</a>
@@ -373,6 +373,12 @@
   <div class="stat"><span class="stat-n">+<b data-count="15">15</b></span><span class="stat-l">Procedimientos</span></div>
   <div class="stat"><span class="stat-n"><b data-count="100">100</b>%</span><span class="stat-l">Satisfacción</span></div>
 </section>
+
+<!-- FRANJA (se mueve con el scroll) -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-row" data-dir="-1"><span>Botox</span><span>Rinomodelación</span><span>Armonización facial</span><span>Relleno de labios</span><span>Radiesse y Sculptra</span><span>Láser CO₂</span><span>Botox</span><span>Rinomodelación</span><span>Armonización facial</span><span>Relleno de labios</span><span>Radiesse y Sculptra</span><span>Láser CO₂</span></div>
+  <div class="ticker-row" data-dir="1"><span>Criolipólisis</span><span>Relleno de ojeras</span><span>Alectomía</span><span>Terapias capilares</span><span>Medellín</span><span>Urabá</span><span>Criolipólisis</span><span>Relleno de ojeras</span><span>Alectomía</span><span>Terapias capilares</span><span>Medellín</span><span>Urabá</span></div>
+</div>
 
 <!-- MANIFIESTO -->
 <section class="manifesto" id="manifesto">
@@ -451,45 +457,55 @@
 </section>
 
 <!-- VIDEOS -->
-<section class="videos" id="videos" aria-labelledby="videosTitle">
-  <div class="wrap">
-    <div class="sec-head">
+<!-- @videos-home -->
+<section class="videos videos-scroll" id="videos" aria-labelledby="videosTitle" data-hscroll>
+  <div class="videos-pin">
+    <div class="wrap sec-head">
       <div>
         <p class="eyebrow light">Videos</p>
         <h2 class="h2 light" id="videosTitle" data-split>Mira lo que viven <em>nuestros pacientes</em></h2>
       </div>
       <a href="https://www.instagram.com/drdiegocarrascal/" target="_blank" rel="noopener" class="btn btn-ghost light">Más en Instagram ↗</a>
     </div>
-    <div class="vgrid">
-      <button type="button" class="vcard reveal" data-reel="DWAdrnGADDP" aria-label="Ver video: relleno de labios con Belotero Intense">
+    <div class="vgrid hscroll-track">
+      <button type="button" class="vcard reveal" data-reel="DWAdrnGADDP" aria-label="Ver video: Relleno de labios">
         <img src="/assets/img/videos/labios-belotero.jpg" alt="" width="361" height="640" loading="lazy" decoding="async">
         <span class="vplay" aria-hidden="true">▶</span>
         <span class="vcap"><b>Relleno de labios</b>Volumen, definición y naturalidad en un solo tratamiento.</span>
       </button>
-      <button type="button" class="vcard reveal" data-reel="C9Q2A2KupSf" aria-label="Ver video: la satisfacción de mis pacientes">
+      <button type="button" class="vcard reveal" data-reel="C9Q2A2KupSf" aria-label="Ver video: Testimonio">
         <img src="/assets/img/videos/pacientes.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
         <span class="vplay" aria-hidden="true">▶</span>
         <span class="vcap"><b>Testimonio</b>“La satisfacción de mis pacientes me motiva a ser mejor cada día.”</span>
       </button>
-      <button type="button" class="vcard reveal" data-reel="Ddkcx0Igkd-" aria-label="Ver video: pacientes de Puerto Rico y botox">
+      <button type="button" class="vcard reveal" data-reel="Dekz9b2gikg" aria-label="Ver video: Mitos de la medicina estética">
+        <img src="/assets/img/videos/mitos.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
+        <span class="vplay" aria-hidden="true">▶</span>
+        <span class="vcap"><b>Mitos de la medicina estética</b>El doctor responde lo que más se escucha sobre estos tratamientos.</span>
+      </button>
+      <button type="button" class="vcard reveal" data-reel="DevSE2cA614" aria-label="Ver video: Envejecer bien">
+        <img src="/assets/img/videos/envejecimiento.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
+        <span class="vplay" aria-hidden="true">▶</span>
+        <span class="vcap"><b>Envejecer bien</b>Tratamientos y protocolos para que los años pasen con elegancia.</span>
+      </button>
+      <button type="button" class="vcard reveal" data-reel="DeiV9MBAcI1" aria-label="Ver video: Nexus Estética Médica">
+        <img src="/assets/img/videos/nexus.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
+        <span class="vplay" aria-hidden="true">▶</span>
+        <span class="vcap"><b>Nexus Estética Médica</b>Gracias a todos los que confían en nosotros para sus procedimientos.</span>
+      </button>
+      <button type="button" class="vcard reveal" data-reel="Ddkcx0Igkd-" aria-label="Ver video: Pacientes de Puerto Rico">
         <img src="/assets/img/videos/botox-puerto-rico.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
         <span class="vplay" aria-hidden="true">▶</span>
-        <span class="vcap"><b>Botox · Pacientes de Puerto Rico</b>Envejecer con dignidad es que te guste lo que ves en el espejo.</span>
+        <span class="vcap"><b>Pacientes de Puerto Rico</b>Envejecer con dignidad es que te guste lo que ves en el espejo.</span>
       </button>
-      <button type="button" class="vcard reveal" data-reel="DdaJRZOAuK4" aria-label="Ver video: Ultraformer MPT para la papada">
+      <button type="button" class="vcard reveal" data-reel="DdaJRZOAuK4" aria-label="Ver video: Ultraformer MPT">
         <img src="/assets/img/videos/ultraformer-papada.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
         <span class="vplay" aria-hidden="true">▶</span>
         <span class="vcap"><b>Ultraformer MPT</b>¿Papada que te incomoda? Ultrasonido focalizado para definir el rostro.</span>
       </button>
     </div>
   </div>
-</section>
-
-<!-- Ventana del video (reproductor de Instagram; carga solo al hacer clic) -->
-<dialog class="vmodal" id="vmodal" aria-label="Video">
-  <button type="button" class="vmodal-close" aria-label="Cerrar video">×</button>
-  <div class="vmodal-frame"></div>
-</dialog>
+</section><!-- @/videos-home -->
 
 <!-- COMUNIDAD -->
 <section class="social" aria-label="Instagram">
@@ -523,6 +539,11 @@
     <div class="footer-legal"><span>© 2026 <span translate="no">Dr. Diego Carrascal</span> · Medicina Estética. Todos los derechos reservados.</span><a href="#">Política de datos</a></div>
   </div>
 </footer>
+
+<dialog class="vmodal" id="vmodal" aria-label="Video">
+  <button type="button" class="vmodal-close" aria-label="Cerrar video">×</button>
+  <div class="vmodal-frame"></div>
+</dialog>
 
 <a class="wa-float" href="https://wa.me/573243245856?text=Hola%20Dr.%20Diego%2C%20quiero%20agendar%20una%20valoraci%C3%B3n." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
