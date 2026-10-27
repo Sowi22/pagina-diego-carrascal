@@ -541,7 +541,7 @@ function initMotion(ready, mWords) {
   // Franja de palabras: cada fila avanza en sentido contrario según el scroll
   $$('.ticker').forEach(t => $$('.ticker-row', t).forEach(row => {
     const dir = +row.dataset.dir;
-    gsap.fromTo(row, { xPercent: dir > 0 ? -25 : 0 }, { xPercent: dir > 0 ? 0 : -25, ease: 'none',
+    gsap.fromTo(row, { xPercent: dir > 0 ? -12 : 0 }, { xPercent: dir > 0 ? 0 : -12, ease: 'none',
       scrollTrigger: { trigger: t, start: 'top bottom', end: 'bottom top', scrub: true } });
   }));
 

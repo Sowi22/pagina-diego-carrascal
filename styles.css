@@ -892,6 +892,7 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
 }
 
 /* Videos: en escritorio la fila se recorre en horizontal mientras se baja */
+.videos { overflow-x: clip; }
 .videos-pin { display: flex; flex-direction: column; justify-content: center; }
 .videos-scroll .hscroll-track { display: flex; gap: 18px; width: max-content; padding: 0 var(--gutter); will-change: transform; }
 .videos-scroll .vcard { width: clamp(260px, 24vw, 340px); flex: 0 0 auto; }
@@ -900,11 +901,19 @@ a.hero-badge:hover { background: rgba(248, 246, 242, .26); }
 .vcap { font-size: 15.5px; }
 .vcap b { font-size: 12.5px; }
 
-/* Franja de palabras que se desplaza con el scroll */
-.ticker { background: var(--ink); overflow: hidden; padding: clamp(18px, 2.5vw, 30px) 0; border-block: 1px solid var(--line); }
-.ticker-row { display: flex; gap: 40px; width: max-content; white-space: nowrap; font: 400 clamp(40px, 6vw, 92px)/1.1 var(--serif); color: var(--fg); will-change: transform; }
-.ticker-row + .ticker-row { margin-top: 6px; color: transparent; -webkit-text-stroke: 1px rgba(207, 176, 108, .55); }
-.ticker-row span::after { content: "✦"; margin-left: 40px; font-size: .4em; vertical-align: middle; color: var(--gold); -webkit-text-stroke: 0; }
+/* Franja de tratamientos: estilo de marca de lujo (mayúsculas finas, espaciado amplio, rombos dorados) */
+.ticker { position: relative; background: var(--ink); overflow: hidden; padding: clamp(20px, 2.4vw, 30px) 0; border: 0; }
+.ticker::before, .ticker::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--gold-grad); opacity: .55; }
+.ticker::before { top: 0; } .ticker::after { bottom: 0; }
+.ticker-row {
+  display: flex; align-items: center; width: max-content; white-space: nowrap; will-change: transform;
+  font: 300 clamp(13px, 1.25vw, 17px)/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; color: rgba(243, 241, 236, .88);
+}
+.ticker-row span { display: inline-flex; align-items: center; }
+.ticker-row span::after {
+  content: ""; width: 6px; height: 6px; margin: 0 clamp(26px, 3vw, 46px); transform: rotate(45deg);
+  background: var(--gold-grad); flex: 0 0 auto;
+}
 
 @media (max-width: 1000px) {
   .videos-scroll .hscroll-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
