@@ -454,11 +454,10 @@ function initMotion(ready, mWords) {
 
   // Inicio: la imagen se expande hasta ocupar toda la pantalla
   if ($('#heroMedia')) {
-    const inset = () => Math.max(16, (innerWidth - 1280) / 2 + 40);
-    gsap.fromTo('.hero-media-inner',
-      { clipPath: () => `inset(0px ${inset()}px 0px ${inset()}px round 28px)` },
-      { clipPath: 'inset(0px 0px 0px 0px round 0px)', ease: 'none',
-        scrollTrigger: { trigger: '#heroMedia', start: 'top 85%', end: 'top top', scrub: true, invalidateOnRefresh: true } });
+    // Revelado con escala (transform): arranca con márgenes laterales y crece hasta el ancho completo
+    const startScale = () => (innerWidth - 2 * Math.max(16, (innerWidth - 1280) / 2 + 40)) / innerWidth;
+    gsap.fromTo('.hero-media-inner', { scale: startScale }, { scale: 1, ease: 'none',
+      scrollTrigger: { trigger: '#heroMedia', start: 'top 85%', end: 'top top', scrub: true, invalidateOnRefresh: true } });
     gsap.to('.hero-bg', { scale: 1, ease: 'none',
       scrollTrigger: { trigger: '#heroMedia', start: 'top bottom', end: 'bottom top', scrub: true } });
     gsap.from('.hero-media-caption, .hero-badge', { y: 50, opacity: 0, stagger: 0.1, duration: 1,
